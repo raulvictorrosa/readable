@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import { PropTypes } from 'prop-types'
 
 import { withStyles } from 'material-ui/styles';
@@ -7,6 +6,8 @@ import Grid from 'material-ui/Grid';
 
 import Sidebar from './Sidebar';
 import Post from './Post'
+
+import * as ReadbleAPI from '../utils/ReadbleAPI'
 
 const styles = theme => ({
   root: {
@@ -46,13 +47,28 @@ const styles = theme => ({
   },
 });
 
-class App extends Component {
+class Home extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   }
 
+  state = {
+    posts: []
+  }
+
+  componentDidMount() {
+    ReadbleAPI.getPosts().then((posts) => {
+      this.setState({ posts })
+    })
+  }
+
+
   render() {
     const { classes } = this.props;
+
+    const { posts } = this.state
+
+    console.log(posts)
 
     return (
       <div className={classes.root}>
@@ -63,9 +79,11 @@ class App extends Component {
             <Grid container className={classes.root}>
               <Grid item xs={12}>
                 <Grid container className={classes.demo} spacing={Number(24)}>
-                  {[0, 1, 2, 3].map(value => (
-                    <Grid key={value} item>
-                      <Post />
+                  {posts.map(post => (
+                    <Grid key={post.id} item>
+                      <Post
+                        post={post}
+                      />
                     </Grid>
                   ))}
                 </Grid>
@@ -78,4 +96,4 @@ class App extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(App);
+export default withStyles(styles, { withTheme: true })(Home);
