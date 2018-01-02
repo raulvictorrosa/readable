@@ -8,11 +8,14 @@ import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import blueGrey from 'material-ui/colors/blueGrey';
+import List, { ListItem, ListItemIcon } from 'material-ui/List';
 
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import ShareIcon from 'material-ui-icons/Share';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+import KeyboardArrowUpIcon from 'material-ui-icons/KeyboardArrowUp';
+import KeyboardArrowDownIcon from 'material-ui-icons/KeyboardArrowDown';
+import ModeCommentIcon from 'material-ui-icons/ModeComment';
 import ForwardIcon from 'material-ui-icons/Forward';
+
+import PostOptions from './PostOptions'
 
 const styles = theme => ({
   card: {
@@ -29,7 +32,17 @@ const styles = theme => ({
     width: 85,
     height: 85
   },
-});
+  listScore: {
+    flex: '0 0 auto'
+  },
+  listItem: {
+    paddingTop: 0,
+    paddingBottom: 0
+  },
+  listItemIcon: {
+    marginRight: 0
+  },
+})
 
 class Post extends Component {
   static propTypes = {
@@ -49,7 +62,7 @@ class Post extends Component {
           <CardHeader
             avatar={
               <Avatar
-                // aria-label={post.author}
+                aria-label={post.author}
                 alt={post.author}
                 sizes="200"
                 className={classes.avatar}
@@ -57,12 +70,8 @@ class Post extends Component {
                 {post.author}
               </Avatar>
             }
-            action={
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            }
-            title={post.title.substr(1, 8 )}
+            action={<PostOptions />}
+            title={post.title}
             subheader={Moment(date).format('MMMM DD, YYYY')}
           />
 
@@ -73,17 +82,31 @@ class Post extends Component {
           </CardContent>
 
           <CardActions disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <Typography color="secondary" type="caption">
-              <b>25</b>
+            <List className={classes.listScore} disablePadding>
+              <ListItem button className={classes.listItem}>
+                <ListItemIcon aria-label="Up score" >
+                  <KeyboardArrowUpIcon className={classes.listItemIcon} titleAccess="Up score" />
+                </ListItemIcon>
+              </ListItem>
+              <ListItem button className={classes.listItem}>
+                <ListItemIcon aria-label="Down score">
+                  <KeyboardArrowDownIcon className={classes.listItemIcon} titleAccess="Down score" />
+                </ListItemIcon>
+              </ListItem>
+            </List>
+            <Typography color="secondary" type="body2">
+              <b>{post.voteScore}</b>
             </Typography>
 
-            <IconButton aria-label="Share">
-              <ShareIcon />
+            <IconButton aria-label="Mode Comments">
+              <ModeCommentIcon />
             </IconButton>
+            <Typography color="secondary" type="body2">
+              <b>{post.commentCount}</b>
+            </Typography>
+
             <div className={classes.flexGrow} />
+
             <IconButton
               onClick={this.handleExpandClick}
               aria-label="Show more"
