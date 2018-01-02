@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Collapse from 'material-ui/transitions/Collapse';
 
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
+import AddCircle from 'material-ui-icons/AddCircle';
 
 const styles = theme => ({
   nested: {
@@ -21,7 +22,7 @@ class MenuList extends Component {
     classes: PropTypes.object.isRequired,
   };
 
-  state = { open: false }
+  state = { open: true }
 
   handleClick = () => {
     this.setState({ open: !this.state.open })
@@ -42,9 +43,19 @@ class MenuList extends Component {
           <ListItem button>
             <ListItemText primary="Posts" />
           </ListItem>
+          <Collapse component="li" in>
+            <List disablePadding>
+              <ListItem button className={classes.nested}>
+                <ListItemIcon>
+                  <AddCircle />
+                </ListItemIcon>
+                <ListItemText primary="Add new" />
+              </ListItem>
+            </List>
+          </Collapse>
 
           <ListItem button onClick={this.handleClick}>
-            <ListItemText primary="Categorias" />
+            <ListItemText primary="Categories" />
             {this.state.open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
