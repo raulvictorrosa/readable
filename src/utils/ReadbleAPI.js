@@ -12,12 +12,15 @@ const headers = {
   'Authorization': token
 }
 
-// Get all of the categories available for the app.List is found in categories.js.
-// Feel free to extend this list as you desire.
+/**
+* @description Get all of the categories available for the app. List is found in categories.js. Feel free to extend this list as you desire.
+* @param {string} category - The category of the posts
+* @returns {Promise} Promise array of objects that contains the posts related to the category
+*/
 export const getCategories = () =>
   fetch(`${api}/categories`, { headers })
-    .then(res => res.json()) // Returning an Object
-    .then(data => data.categories) // Returning an Array
+    .then(res => res.json())
+    .then(data => data.categories)
 
 // Get all of the posts for a particular category
 export const getPostsByCategories = (path) =>
