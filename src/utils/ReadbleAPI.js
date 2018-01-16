@@ -31,7 +31,10 @@ export const getPostsByCategories = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
 
-// Get all of the posts. Useful for the main page when no category is selected.
+/**
+* @description Get all of the posts. Useful for the main page when no category is selected.
+* @returns {Promise} Promise array of objects that contains the posts
+*/
 export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
