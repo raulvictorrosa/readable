@@ -18,9 +18,6 @@ import ForwardIcon from 'material-ui-icons/Forward';
 import PostOptions from './PostOptions'
 
 const styles = theme => ({
-  card: {
-    maxWidth: 356,
-  },
   media: {
     height: 194,
   },
@@ -54,7 +51,9 @@ class Post extends Component {
 
     const { post } = this.props;
     const { timestamp } = post
-    const date = new Date(timestamp)
+
+    console.log(Moment().unix())
+    // addPost('asdasdasd', Date(), title, body, author, category)
 
     return (
       <div>
@@ -72,7 +71,7 @@ class Post extends Component {
             }
             action={<PostOptions />}
             title={post.title}
-            subheader={Moment(date).format('MMMM DD, YYYY')}
+            subheader={Moment(timestamp).format('MMMM DD, YYYY')}
           />
 
           <CardContent>
