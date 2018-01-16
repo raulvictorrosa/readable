@@ -144,12 +144,14 @@ export const addComment = (id, timestamp, body, author, parentId) =>
     body: JSON.stringify({ id, timestamp, body, author, parentId })
   }).then(res => res.json())
 
-//   PARAMS:
-//     id: Any unique ID. As with posts, UUID is probably the best here.
-//     timestamp: timestamp. Get this however you want.
-//     body: String
-//     author: String
-//     parentId: Should match a post id in the database.
+/**
+* @description Get the details for a single comment
+* @param {string} id - The id of the comment
+* @returns {Promise} Promise object represents the comment
+*/
+export const getComment = (id) =>
+  fetch(`${api}/comments/${id}`, { headers })
+    .then(res => res.json())
 
 // GET /comments/:id
 //   USAGE:
