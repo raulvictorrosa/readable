@@ -39,7 +39,16 @@ export const getPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
 
-// Add a new post
+/**
+* @description Add a new post
+* @param {string} id - UUID should be fine, but any unique id will work
+* @param {number} timestamp - timestamp in whatever format you like, you can use Date.now() if you like
+* @param {string} title - The title of the post
+* @param {string} body - The body of the post
+* @param {string} author - The name of the post
+* @param {string} category - Any of the categories listed in categories.js. Feel free to extend this list as you desire.
+* @returns {Promise} Promise object represents the comment added
+*/
 export const addPost = (id, timestamp, title, body, author, category) =>
   fetch(`${api}/posts`, {
     method: 'POST',
