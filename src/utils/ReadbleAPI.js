@@ -54,19 +54,20 @@ export const getPostById = (id) =>
 //     title - String
 //     body - String
 
+/**
+* @description Sets the deleted flag for a post to 'true'. Sets the parentDeleted flag for all child comments to 'true'.
+* @param {string} id - The id of the post
+* @returns {Promise} Promise object represents the deleted post
+*/
 export const deletePost = (id) =>
-  fetch(`${api}/posts`, {
-    method: 'POST',
+  fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
   }).then(res => res.json())
-    .then(data => data.post)
-// DELETE /posts/:id
-//   USAGE:
-//     Sets the deleted flag for a post to 'true'.
-//     Sets the parentDeleted flag for all child comments to 'true'.
+
 
 // GET /posts/:id/comments
 //   USAGE:
