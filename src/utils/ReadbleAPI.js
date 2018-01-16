@@ -59,7 +59,11 @@ export const addPost = (id, timestamp, title, body, author, category) =>
     body: JSON.stringify({ id, timestamp, title, body, author, category })
   }).then(res => res.json())
 
-// Get the details of a single post
+/**
+* @description Get the details of a single post
+* @param {string} id - The id of the post
+* @returns {Promise} Promise object that contains the post
+*/
 export const getPostById = (id) =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(res => res.json())
