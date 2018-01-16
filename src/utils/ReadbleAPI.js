@@ -39,13 +39,11 @@ export const addPost = (id, timestamp, title, body, author, category) =>
     },
     body: JSON.stringify({ id, timestamp, title, body, author, category })
   }).then(res => res.json())
-    .then(data => data.post)
 
 // Get the details of a single post
 export const getPostById = (id) =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(res => res.json())
-    .then(data => data.book)
 
 /**
 * @description Used for voting on a post
