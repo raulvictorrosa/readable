@@ -56,10 +56,14 @@ class Home extends Component {
     posts: []
   }
 
-  componentDidMount() {
-    ReadbleAPI.getPosts().then((posts) => {
-      this.setState({ posts })
-    })
+  // componentDidMount() {
+  //   ReadbleAPI.getPosts().then((posts) => {
+  //     this.setState({ posts })
+  //   })
+  // }
+
+  componentWillMount() {
+    this.props.fetchData('BY_SCORE_HIGHEST')
   }
 
 
@@ -96,4 +100,16 @@ class Home extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Home);
+const mapStateToProps = state => ({
+  posts: state.postsById,
+  sortBy: state.setSorting ? state.setSorting.sort : ''
+})
+
+const mapDispatchToProps = dispatch => ({
+  dispatch,
+  fetchData: sortCriteria =>
+    dispatch(fetchPosts()).then(() => dispatch(setSorting(sortCriteria)))
+})
+
+// export default withStyles(styles, { withTheme: true })(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
