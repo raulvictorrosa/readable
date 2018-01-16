@@ -22,9 +22,13 @@ export const getCategories = () =>
     .then(res => res.json())
     .then(data => data.categories)
 
-// Get all of the posts for a particular category
-export const getPostsByCategories = (path) =>
-  fetch(`${api}/${path}/posts`, { headers })
+/**
+* @description Get all of the posts for a particular category
+* @param {string} category - The category of the posts
+* @returns {Promise} Promise array of objects that contains the posts related to the category
+*/
+export const getPostsByCategories = (category) =>
+  fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
 
 // Get all of the posts. Useful for the main page when no category is selected.
