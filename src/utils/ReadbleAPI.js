@@ -186,14 +186,16 @@ export const editComment = (id, timestamp, body) =>
     body: JSON.stringify({ timestamp, body })
   }).then(res => res.json())
 
-// PUT /comments/:id
-//   USAGE:
-//     Edit the details of an existing comment
-
-//   PARAMS:
-//     timestamp: timestamp. Get this however you want.
-//     body: String
-
-// DELETE /comments/:id
-//   USAGE:
-//     Sets a comment's deleted flag to 'true'
+/**
+* @description Sets a comment's deleted flag to 'true'
+* @param {string} id - The id of the comment
+* @returns {Promise} Promise object represents the comment's deleted
+*/
+export const deleteComment = (id) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'DELETE',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+  }).then(res => res.json())
