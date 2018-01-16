@@ -47,12 +47,38 @@ export const getPostById = (id) =>
     .then(res => res.json())
     .then(data => data.book)
 
-// PUT /posts/:id
-//   USAGE:
-//     Edit the details of an existing post
-//   PARAMS:
-//     title - String
-//     body - String
+/**
+* @description Used for voting on a post
+* @param {string} id - The id of the post
+* @param {string} option - Either "upVote" or "downVote"
+* @returns {Promise} Promise object represents the post updated with the vote
+*/
+export const votePost = (id, option) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  }).then(res => res.json())
+
+/**
+* @description Edit the details of an existing post
+* @param {string} id - The id of the post
+* @param {string} title - The title of the post
+* @param {string} body - The body of the post
+* @returns {Promise} Promise object represents the post updated
+*/
+export const editPost = (id, title, body) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ title, body })
+  }).then(res => res.json())
 
 /**
 * @description Sets the deleted flag for a post to 'true'. Sets the parentDeleted flag for all child comments to 'true'.
