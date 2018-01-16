@@ -169,11 +169,22 @@ export const voteComment = (id, option) =>
     body: JSON.stringify({ option })
   }).then(res => res.json())
 
-// POST /comments/:id
-//   USAGE:
-//     Used for voting on a comment.
-//   PARAMS:
-//     option - String: Either "upVote" or "downVote"
+/**
+* @description Edit the details of an existing comment
+* @param {string} id - The id of the post
+* @param {number} timestamp - timestamp. Get this however you want.
+* @param {string} body - The body of the comment
+* @returns {Promise} Promise object represents the comment updated
+*/
+export const editComment = (id, timestamp, body) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ timestamp, body })
+  }).then(res => res.json())
 
 // PUT /comments/:id
 //   USAGE:
