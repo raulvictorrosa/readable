@@ -58,6 +58,19 @@ class Sidebar extends Component {
     const { classes } = this.props;
     const { theme } = this.props;
 
+    const currentPathName = window.location.pathname
+    const pages = [
+      {
+        slug: `/`,
+        heading: `Posts`
+      },
+      {
+        slug: `/post-new`,
+        heading: `Add new post`
+      },
+    ]
+    const currentPageName = pages.filter((page) => page.slug === currentPathName)
+
     return (
       <div>
         <AppBar className={classes.appBar}>
@@ -71,8 +84,8 @@ class Sidebar extends Component {
               <MenuIcon />
             </IconButton>
             <Typography type="title" color="inherit" noWrap>
-              Posts
-              </Typography>
+              {currentPageName[0].heading}
+            </Typography>
           </Toolbar>
         </AppBar>
 
