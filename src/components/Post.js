@@ -52,7 +52,7 @@ class Post extends Component {
     const { post } = this.props;
     const { timestamp } = post
 
-    console.log(Moment().unix())
+    // console.log(Moment().unix())
     // addPost('asdasdasd', Date(), title, body, author, category)
 
     return (
