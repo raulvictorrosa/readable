@@ -116,9 +116,14 @@ export const deletePost = (id) =>
   }).then(res => res.json())
 
 
-// GET /posts/:id/comments
-//   USAGE:
-//     Get all the comments for a single post
+/**
+* @description Get all the comments for a single post
+* @param {string} id - The id of the post
+* @returns {Promise} Promise array that contains the comments of the post
+*/
+export const getComments = (id) =>
+  fetch(`${api}/posts/${id}/comments`, { headers })
+    .then(res => res.json())
 
 // POST /comments
 //   USAGE:
