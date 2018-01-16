@@ -153,9 +153,21 @@ export const getComment = (id) =>
   fetch(`${api}/comments/${id}`, { headers })
     .then(res => res.json())
 
-// GET /comments/:id
-//   USAGE:
-//     Get the details for a single comment
+/**
+* @description Used for voting on a comment.
+* @param {string} id - The id of the post
+* @param {string} option - Either "upVote" or "downVote"
+* @returns {Promise} Promise object represents the comment with the new vote
+*/
+export const voteComment = (id, option) =>
+  fetch(`${api}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  }).then(res => res.json())
 
 // POST /comments/:id
 //   USAGE:
