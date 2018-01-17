@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types';
 
 import { withStyles } from 'material-ui/styles';
@@ -15,6 +16,9 @@ const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
+  menuLinkItem: {
+    textDecoration: 'none'
+  }
 });
 
 class MenuList extends Component {
@@ -40,12 +44,12 @@ class MenuList extends Component {
         </List>
         <Divider />
         <List className={classes.root}>
-          <ListItem button>
+          <ListItem button component={Link} to='/'>
             <ListItemText primary="Posts" />
           </ListItem>
           <Collapse component="li" in>
             <List disablePadding>
-              <ListItem button className={classes.nested}>
+              <ListItem button className={classes.nested} component={Link} to='/post-new'>
                 <ListItemIcon>
                   <AddCircle />
                 </ListItemIcon>
