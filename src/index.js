@@ -1,39 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
-
-// import reducer from './reducers'
+import { BrowserRouter } from 'react-router-dom';
+import thunk from 'redux-thunk'
+import registerServiceWorker from './registerServiceWorker';
 
 import './styles/index.css';
 
 import Index from './components';
-import registerServiceWorker from './registerServiceWorker';
-
-const logger = store => next => action => {
-  console.group(action.type)
-  console.info('dispatching', action)
-  let result = next(action)
-  console.log('next state', store.getState())
-  console.groupEnd(action.type)
-  return result
-}
+import reducer from './reducers'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+// const logger = store => next => action => {
+//   console.group(action.type)
+//   console.info('dispatching', action)
+//   let result = next(action)
+//   console.log('next state', store.getState())
+//   console.groupEnd(action.type)
+//   return result
+// }
+
 
 const store = createStore(
   reducer,
   composeEnhancers(
-    applyMiddleware(logger)
+    applyMiddleware(thunk)
+    // applyMiddleware(logger, thunk)
   )
 )
 
+// console.log(store.getState())
+
 ReactDOM.render(
   <Provider store={store}>
-    {/* <BrowserRouter> */}
+    <BrowserRouter>
       <Index />
-    {/* </BrowserRouter> */}
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );
