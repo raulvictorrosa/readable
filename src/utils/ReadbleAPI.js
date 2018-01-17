@@ -27,7 +27,7 @@ export const getCategories = () =>
 * @param {string} category - The category of the posts
 * @returns {Promise} Promise array of objects that contains the posts related to the category
 */
-export const getPostsByCategories = (category) =>
+export const getPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
 
