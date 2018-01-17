@@ -17,7 +17,7 @@ const headers = {
 * @param {string} category - The category of the posts
 * @returns {Promise} Promise array of objects that contains the posts related to the category
 */
-export const getCategories = () =>
+export const fetchCategories = () =>
   fetch(`${api}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
@@ -27,7 +27,7 @@ export const getCategories = () =>
 * @param {string} category - The category of the posts
 * @returns {Promise} Promise array of objects that contains the posts related to the category
 */
-export const getPostsByCategory = (category) =>
+export const fetchPostsByCategory = (category) =>
   fetch(`${api}/${category}/posts`, { headers })
     .then(res => res.json())
 
@@ -35,7 +35,7 @@ export const getPostsByCategory = (category) =>
 * @description Get all of the posts. Useful for the main page when no category is selected.
 * @returns {Promise} Promise array of objects that contains the posts
 */
-export const getPosts = () =>
+export const fetchPosts = () =>
   fetch(`${api}/posts`, { headers })
     .then(res => res.json())
 
@@ -64,7 +64,7 @@ export const addPost = (id, timestamp, title, body, author, category) =>
 * @param {string} id - The id of the post
 * @returns {Promise} Promise object that contains the post
 */
-export const getPostById = (id) =>
+export const fetchPostById = (id) =>
   fetch(`${api}/posts/${id}`, { headers })
     .then(res => res.json())
 
@@ -121,7 +121,7 @@ export const deletePost = (id) =>
 * @param {string} id - The id of the post
 * @returns {Promise} Promise array that contains the comments of the post
 */
-export const getComments = (id) =>
+export const fetchComments = (id) =>
   fetch(`${api}/posts/${id}/comments`, { headers })
     .then(res => res.json())
 
@@ -149,7 +149,7 @@ export const addComment = (id, timestamp, body, author, parentId) =>
 * @param {string} id - The id of the comment
 * @returns {Promise} Promise object represents the comment
 */
-export const getComment = (id) =>
+export const fetchComment = (id) =>
   fetch(`${api}/comments/${id}`, { headers })
     .then(res => res.json())
 
