@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux'
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
+import compose from 'recompose/compose';
+
+import * as actions from '../../actions/postActions';
 
 import Grid from 'material-ui/Grid';
 
 import Post from './Post'
-
-import * as ReadbleAPI from '../utils/ReadbleAPI'
+// import SinglePost from '../post/SinglePost'
+import * as actions from '../../actions/postActions';
 
 class Home extends Component {
+  static propTypes = {
+    posts: PropTypes.array
+  }
+
   state = {
     posts: []
   }
@@ -19,11 +27,11 @@ class Home extends Component {
   // }
 
   componentWillMount() {
-    this.props.fetchData('BY_SCORE_HIGHEST')
+    this.props.fetchPosts()
   }
 
   render() {
-    const { posts } = this.state
+    const { posts } = this.props
     console.log(posts)
 
     return (
@@ -31,9 +39,9 @@ class Home extends Component {
         <Grid container spacing={24}>
           {posts.map(post => (
             <Grid key={post.id} item xs={4}>
-              <Post
+              {/* <Post
                 post={post}
-              />
+              /> */}
             </Grid>
           ))}
         </Grid>
@@ -55,3 +63,20 @@ const mapDispatchToProps = dispatch => ({
 
 // export default withStyles(styles, { withTheme: true })(Home);
 export default connect(mapStateToProps, mapDispatchToProps)(Home)
+
+export default compose(
+  withStyles(styles, {
+    name: 'AppFrame',
+  }),
+  withWidth(),
+  connect(),
+)(AppFrame);
+
+export default compose(
+  withStyles(styles, {
+    name: 'AppFrame',
+  }),
+  connect(state => ({
+    uiTheme: state.theme,
+  })),
+)(AppFrame);
