@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-// import { PropTypes } from 'prop-types';
-
+import { PropTypes } from 'prop-types';
+// import { Route } from 'react-router-dom';
+import { Link, Route, withRouter, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { sortPost } from '../actions/postActions'
+// import { fetchCategories } from '../actions/categoryActions'
+import compose from 'recompose/compose';
 import Grid from 'material-ui/Grid';
 import { withStyles } from 'material-ui/styles';
 
@@ -39,6 +43,10 @@ const styles = theme => ({
 })
 
 class Index extends Component {
+  static propTypes = {
+    posts: PropTypes.array,
+    categories: PropTypes.array
+  }
   render() {
     const { classes } = this.props;
 
@@ -49,10 +57,8 @@ class Index extends Component {
 
           <main className={classes.content}>
             <Grid container className={classes.root}>
-              <Route exact path='/' render={() => (
-                <Home />
-              )} />
-              <Route path='/post-new' component={PostNew} />
+              <Route exact path='/' component={Home} />
+              <Route exact path='/post-new' component={PostNew} />
               {/* <Route exact path='/:category' component={Category} />
               <Route path='/:category/:post_id' component={PostDetail} /> */}
             </Grid>
@@ -63,4 +69,18 @@ class Index extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Index)
+function mapStateToProps({ categories }) {
+  return {
+    categories: categories
+  }
+}
+
+// export default withStyles(styles, { withTheme: true })(Index)
+export default withRouter(
+  connect(
+    mapStateToProps, {
+      sortPost,
+      // fetchCategories
+    }
+  )(Index)
+)
