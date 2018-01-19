@@ -1,12 +1,5 @@
-import API from '../utils/ReadbleAPI'
-
-export const fetchPosts = () => {
-  return (dispatch) => {
-    API.fetchPosts().then(posts => {
-      dispatch({ type: Types.FETCH_POSTS, posts })
-    })
-  }
-}
+import * as API from '../utils/ReadbleAPI'
+import * as Types from './actionTypes'
 
 export const fetchPostsByCategory = (category) => {
   return (dispatch) => {
@@ -16,16 +9,40 @@ export const fetchPostsByCategory = (category) => {
   }
 }
 
-export const createPost = (post, callback) => {
+export const fetchPosts = () => {
+  return (dispatch) => {
+    API.fetchPosts().then(posts => {
+      dispatch({ type: Types.FETCH_POSTS, posts })
+    })
+  }
+}
+
+export const addPost = (post, callback) => {
   return (dispatch) => {
     API.addPost(post).then(() => callback())
     dispatch({ type: Types.ADD_POST, post })
   }
 }
 
-export const updatePost = (postId, title, body, callback) => {
+export const fetchPostById = (id) => {
   return (dispatch) => {
-    API.updatePost(postId, title, body).then(updatedPost => {
+    API.fetchPostById(id).then(posts => {
+      dispatch({ type: Types.GET_POST_BY_ID, posts })
+    })
+  }
+}
+
+export const votePost = (postId, option) => {
+  return (dispatch) => {
+    API.votePost(postId, option).then(post => {
+      dispatch({ type: Types.VOTE_POST, postId, option })
+    })
+  }
+}
+
+export const editPost = (postId, title, body, callback) => {
+  return (dispatch) => {
+    API.editPost(postId, title, body).then(updatedPost => {
       dispatch({ type: Types.UPDATE_POST, updatedPost, postId })
     }).then(() => callback())
   }
@@ -35,14 +52,6 @@ export const deletePost = (postId, callback) => {
   return dispatch => {
     API.deletePost(postId).then(() => callback())
     dispatch({ type: Types.DELETE_POST, postId })
-  }
-}
-
-export const votePost = (postId, option) => {
-  return (dispatch) => {
-    API.votePost(postId, option).then(post => {
-      dispatch({ type: Types.VOTE_POST, postId, option })
-    })
   }
 }
 
