@@ -7,7 +7,7 @@ import { BASE_URL, headers, OPTION_UPVOTE, OPTION_DOWNVOTE } from './constants';
 * @returns {Promise} Promise array that contains the comments of the post
 */
 export const fetchComments = (id) =>
-  fetch(`${api}/posts/${id}/comments`, { headers })
+  fetch(`${BASE_URL}/posts/${id}/comments`, { headers })
     .then(res => res.json())
 
 /**
@@ -20,7 +20,7 @@ export const fetchComments = (id) =>
 * @returns {Promise} Promise object represents the comment added
 */
 export const addComment = (id, timestamp, body, author, parentId) =>
-  fetch(`${api}/comments`, {
+  fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -35,7 +35,7 @@ export const addComment = (id, timestamp, body, author, parentId) =>
 * @returns {Promise} Promise object represents the comment
 */
 export const fetchComment = (id) =>
-  fetch(`${api}/comments/${id}`, { headers })
+  fetch(`${BASE_URL}/comments/${id}`, { headers })
     .then(res => res.json())
 
 /**
@@ -45,7 +45,7 @@ export const fetchComment = (id) =>
 * @returns {Promise} Promise object represents the comment with the new vote
 */
 export const voteComment = (id, option) =>
-  fetch(`${api}/comments/${id}`, {
+  fetch(`${BASE_URL}/comments/${id}`, {
     method: 'POST',
     headers: {
       ...headers,
@@ -62,7 +62,7 @@ export const voteComment = (id, option) =>
 * @returns {Promise} Promise object represents the comment updated
 */
 export const editComment = (id, timestamp, body) =>
-  fetch(`${api}/comments/${id}`, {
+  fetch(`${BASE_URL}/comments/${id}`, {
     method: 'PUT',
     headers: {
       ...headers,
@@ -77,7 +77,7 @@ export const editComment = (id, timestamp, body) =>
 * @returns {Promise} Promise object represents the comment's deleted
 */
 export const deleteComment = (id) =>
-  fetch(`${api}/comments/${id}`, {
+  fetch(`${BASE_URL}/comments/${id}`, {
     method: 'DELETE',
     headers: {
       ...headers,

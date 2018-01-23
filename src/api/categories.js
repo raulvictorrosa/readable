@@ -6,6 +6,6 @@ import { BASE_URL, headers } from './constants';
 * @returns {Promise} Promise array of objects that contains the posts related to the category
 */
 export const fetchCategories = () =>
-  fetch(`${api}/categories`, { headers })
+  fetch(`${BASE_URL}/categories`, { headers })
     .then(res => res.json())
     .then(data => data.categories)
