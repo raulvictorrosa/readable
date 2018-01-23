@@ -19,14 +19,21 @@ export const fetchComments = (id) =>
 * @param {string} parentId - Should match a post id in the database.
 * @returns {Promise} Promise object represents the comment added
 */
-export const addComment = (id, timestamp, body, author, parentId) =>
+// export const addComment = (id, timestamp, body, author, parentId) =>
+export const addComment = (parentId, data) =>
   fetch(`${BASE_URL}/comments`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ id, timestamp, body, author, parentId })
+    // body: JSON.stringify({ id, timestamp, body, author, parentId })
+    body: JSON.stringify({
+      ...data,
+      parentId,
+      id: v4(),
+      timestamp: Date.now()
+    })
   }).then(res => res.json())
 
 /**
@@ -44,15 +51,27 @@ export const fetchComment = (id) =>
 * @param {string} option - Either "upVote" or "downVote"
 * @returns {Promise} Promise object represents the comment with the new vote
 */
-export const voteComment = (id, option) =>
-  fetch(`${BASE_URL}/comments/${id}`, {
-    method: 'POST',
-    headers: {
-      ...headers,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ option })
-  }).then(res => res.json())
+// export const voteComment = (id, option) =>
+//   fetch(`${BASE_URL}/comments/${id}`, {
+//     method: 'POST',
+//     headers: {
+//       ...headers,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({ option })
+//   }).then(res => res.json())
+
+const voteComment = (option) => (commentId) => {
+  return fetch(`${BASE_URL}/comments/${commentId}`,
+    {
+      method: 'POST',
+      headers: HEADERS,
+      body: JSON.stringify({ option })
+    })
+    .then(res => res.json());
+}
+export const upvoteComment = voteComment(OPTION_UPVOTE);
+export const downvoteComment = voteComment(OPTION_DOWNVOTE);
 
 /**
 * @description Edit the details of an existing comment
@@ -61,14 +80,19 @@ export const voteComment = (id, option) =>
 * @param {string} body - The body of the comment
 * @returns {Promise} Promise object represents the comment updated
 */
-export const editComment = (id, timestamp, body) =>
+// export const editComment = (id, timestamp, body) =>
+export const editComment = (id, data) =>
   fetch(`${BASE_URL}/comments/${id}`, {
     method: 'PUT',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ timestamp, body })
+    // body: JSON.stringify({ timestamp, body })
+    body: JSON.stringify({
+      ...data,
+      timestamp: Date.now()
+    })
   }).then(res => res.json())
 
 /**
