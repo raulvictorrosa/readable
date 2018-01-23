@@ -4,7 +4,7 @@ import * as Types from './actionTypes'
 export const fetchPostsByCategory = (category) => {
   return (dispatch) => {
     API.fetchPostsByCategory(category).then(posts => {
-      dispatch({ type: Types.GET_CATEGORY_POSTS, posts })
+      dispatch({ type: Types.FETCH_POSTS_BY_CATEGORY, posts })
     })
   }
 }
@@ -27,7 +27,7 @@ export const addPost = (post, callback) => {
 export const fetchPostById = (id) => {
   return (dispatch) => {
     API.fetchPostById(id).then(posts => {
-      dispatch({ type: Types.GET_POST_BY_ID, posts })
+      dispatch({ type: Types.FETCH_POST_BY_ID, posts })
     })
   }
 }
@@ -43,7 +43,7 @@ export const votePost = (postId, option) => {
 export const editPost = (postId, title, body, callback) => {
   return (dispatch) => {
     API.editPost(postId, title, body).then(updatedPost => {
-      dispatch({ type: Types.UPDATE_POST, updatedPost, postId })
+      dispatch({ type: Types.EDIT_POST, updatedPost, postId })
     }).then(() => callback())
   }
 }
