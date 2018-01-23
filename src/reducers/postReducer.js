@@ -3,21 +3,29 @@
 // Depend solely on the arguments passed into them
 // Do not produce side effects
 import sortBy from 'sort-by'
-import * as Types from '../actions/actionTypes'
+import {
+  FETCH_POSTS_BY_CATEGORY,
+  FETCH_POSTS,
+  ADD_POST,
+  EDIT_POST,
+  DELETE_POST,
+  VOTE_POST,
+  SORT_POST,
+} from '../actions/actionTypes'
 
 function posts(state = [], action) {
   const { posts, post, postId, updatedPost, sortKey } = action
   switch (action.type) {
-    case Types.FETCH_POSTS_BY_CATEGORY:
+    case FETCH_POSTS_BY_CATEGORY:
       return posts.filter(post => !(post.deleted))
 
-    case Types.FETCH_POSTS:
+    case FETCH_POSTS:
       return action.posts.filter(post => !(post.deleted))
 
-    case Types.ADD_POST:
+    case ADD_POST:
       return state.concat([post])
 
-    case Types.EDIT_POST:
+    case EDIT_POST:
       return state.map(post => {
         if (post.id === postId) {
           post = updatedPost
@@ -25,10 +33,10 @@ function posts(state = [], action) {
         return post
       })
 
-    case Types.DELETE_POST:
+    case DELETE_POST:
       return state.filter(post => post.id !== postId)
 
-    case Types.VOTE_POST:
+    case VOTE_POST:
       return state.map(post => {
         if (post.id === action.postId) {
           if (action.option === "upVote") {
@@ -41,7 +49,7 @@ function posts(state = [], action) {
         return post
       })
 
-    case Types.SORT_POST:
+    case SORT_POST:
       return [].concat(state.sort(sortBy("-" + sortKey)))
 
     default:
