@@ -1,10 +1,10 @@
 import * as API from '../utils/ReadbleAPI'
-import * as Types from './actionTypes.js';
+import { FETCH_CATEGORIES } from './actionTypes.js';
 
 export const fetchCategories = () => {
   return (dispatch) => {
     API.fetchCategories().then(res => {
-      dispatch({ type: Types.FETCH_CATEGORIES, res })
+      dispatch({ type: FETCH_CATEGORIES, res })
     })
   }
 }
