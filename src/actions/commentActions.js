@@ -1,22 +1,21 @@
-import * as API from '../utils/ReadbleAPI'
+import API from '../api'
 import {
   FETCH_COMMENTS,
   ADD_COMMENT,
   // FETCH_COMMENT,
-  VOTE_COMMENT,
+  // VOTE_COMMENT,
+  UPVOTE_COMMENT,
+  DOWNVOTE_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
-} from './actionTypes'
+} from '../actions'
 
-export const fetchComments = (parentId) => {
-  return (dispatch) => {
-    API.fetchComments(parentId).then(comments => {
-      dispatch({ type: FETCH_COMMENTS, parentId, comments })
-    })
-  }
-}
+export const fetchComments = (postId) =>
+  API.fetchComments(postId).then(comments => {
+    dispatch({ type: FETCH_COMMENTS, postId, comments })
+  })
 
-export const addComment = (comment, parentId, callback) => {
+export const addComment = (comment, postId, callback) => {
   return (dispatch) => {
     API.addComment(comment).then(comment => {
       dispatch({ type: ADD_COMMENT, parentId, comment })
@@ -26,13 +25,13 @@ export const addComment = (comment, parentId, callback) => {
 
 //TODO: Add action to FETCH_COMMENT
 
-export const voteComment = (commentId, parentId, option) => {
-  return (dispatch) => {
-    API.voteComment(commentId, option).then(updatedComment => {
-      dispatch({ type: VOTE_COMMENT, updatedComment, commentId, parentId })
-    })
-  }
-}
+// export const voteComment = (commentId, parentId, option) => {
+//   return (dispatch) => {
+//     API.voteComment(commentId, option).then(updatedComment => {
+//       dispatch({ type: VOTE_COMMENT, updatedComment, commentId, parentId })
+//     })
+//   }
+// }
 
 export const editComment = (commentId, parentId, timestamp, body, callback) => {
   return (dispatch) => {
