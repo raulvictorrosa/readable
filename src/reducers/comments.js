@@ -2,10 +2,10 @@ import {
   FETCH_COMMENTS,
   ADD_COMMENT,
   // FETCH_COMMENT,
-  VOTE_COMMENT,
+  // VOTE_COMMENT,
   EDIT_COMMENT,
   DELETE_COMMENT,
-} from '../actions/actionTypes'
+} from '../actions'
 
 function comments(state = {}, action) {
   const { comments, commentId, parentId, updatedComment } = action
@@ -18,16 +18,16 @@ function comments(state = {}, action) {
 
     //TODO: Add reducer to FETCH_COMMENT
 
-    case VOTE_COMMENT:
-      return {
-        ...state,
-        [parentId]: state[parentId].map(comment => {
-          if (comment.id === commentId) {
-            comment = updatedComment
-          }
-          return comment
-        })
-      }
+    // case VOTE_COMMENT:
+    //   return {
+    //     ...state,
+    //     [parentId]: state[parentId].map(comment => {
+    //       if (comment.id === commentId) {
+    //         comment = updatedComment
+    //       }
+    //       return comment
+    //     })
+    //   }
 
     case EDIT_COMMENT:
       return {
