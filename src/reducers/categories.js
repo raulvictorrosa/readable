@@ -1,9 +1,9 @@
-import { FETCH_CATEGORIES } from '../actions/actionTypes'
+import { FETCH_CATEGORIES } from '../actions'
 
 function categories(state = [], action) {
   switch (action.type) {
     case FETCH_CATEGORIES:
-      return action.res.categories
+      return action.categories
 
     default:
       return state
