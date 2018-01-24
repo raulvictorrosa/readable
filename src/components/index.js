@@ -13,6 +13,7 @@ import Grid from 'material-ui/Grid';
 
 import Header from './sidebar';
 import Sidebar from './header';
+import Content from './content';
 // import Home from './Home'
 // import PostNew from './posts/PostNew'
 
@@ -68,6 +69,8 @@ class Index extends Component {
 
           <main className={classes.content}>
             <Grid container className={classes.root}>
+              <Content />
+
               {/* <Route exact path='/:category' component={Category} />
               <Route path='/:category/:post_id' component={PostDetail} /> */}
 
