@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 
-import MenuIcon from 'material-ui-icons/Menu';
-
 import { withStyles } from 'material-ui/styles';
-import Typography from 'material-ui/Typography';
-import Toolbar from 'material-ui/Toolbar';
-import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
+
 import Hidden from 'material-ui/Hidden';
 import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
@@ -17,18 +12,6 @@ import MenuList from './MenuList';
 const drawerWidth = 240;
 
 const styles = theme => ({
-  appBar: {
-    position: 'absolute',
-    marginLeft: drawerWidth,
-    [theme.breakpoints.up('md')]: {
-      width: `calc(100% - ${drawerWidth}px)`,
-    },
-  },
-  navIconHide: {
-    [theme.breakpoints.up('md')]: {
-      display: 'none',
-    },
-  },
   drawerHeader: theme.mixins.toolbar,
   drawerPaper: {
     width: 250,
@@ -58,37 +41,8 @@ class Sidebar extends Component {
     const { classes } = this.props;
     const { theme } = this.props;
 
-    const currentPathName = window.location.pathname
-    const pages = [
-      {
-        slug: `/`,
-        heading: `Posts`
-      },
-      {
-        slug: `/post-new`,
-        heading: `Add new post`
-      },
-    ]
-    const currentPageName = pages.filter((page) => page.slug === currentPathName)
-
     return (
       <div>
-        <AppBar className={classes.appBar}>
-          <Toolbar>
-            <IconButton
-              color="contrast"
-              aria-label="open drawer"
-              onClick={this.handleDrawerToggle}
-              className={classes.navIconHide}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography type="title" color="inherit" noWrap>
-              {currentPageName[0].heading}
-            </Typography>
-          </Toolbar>
-        </AppBar>
-
         <Hidden mdUp>
           <Drawer
             type="temporary"
@@ -102,7 +56,7 @@ class Sidebar extends Component {
               keepMounted: true, // Better open performance on mobile.
             }}
           >
-            <MenuList classes={classes.list} />
+            <MenuList />
           </Drawer>
         </Hidden>
 
@@ -114,7 +68,7 @@ class Sidebar extends Component {
               paper: classes.drawerPaper,
             }}
           >
-            <MenuList classes={classes.list} />
+            <MenuList />
             <Divider />
           </Drawer>
         </Hidden>
