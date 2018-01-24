@@ -65,7 +65,10 @@ const voteComment = (option) => (commentId) => {
   return fetch(`${BASE_URL}/comments/${commentId}`,
     {
       method: 'POST',
-      headers: HEADERS,
+      headers: {
+        ...headers,
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ option })
     })
     .then(res => res.json());
