@@ -1,45 +1,30 @@
-import * as API from '../utils/ReadbleAPI'
+import API from '../api'
 import {
   FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
   ADD_POST,
   FETCH_POST_BY_ID,
-  VOTE_POST,
+  // VOTE_POST,
   EDIT_POST,
   DELETE_POST,
   SORT_POST,
-} from './actionTypes'
+} from '../actions'
 
-export const fetchPostsByCategory = (category) => {
-  return (dispatch) => {
-    API.fetchPostsByCategory(category).then(posts => {
-      dispatch({ type: FETCH_POSTS_BY_CATEGORY, posts })
-    })
-  }
-}
+export const fetchPostsByCategory = (category) =>
+  API.fetchPostsByCategory(category)
+    .then(posts => dispatch({ type: FETCH_POSTS_BY_CATEGORY, posts }))
 
-export const fetchPosts = () => {
-  return (dispatch) => {
-    API.fetchPosts().then(posts => {
-      dispatch({ type: FETCH_POSTS, posts })
-    })
-  }
-}
+export const fetchPosts = () =>
+  API.fetchPosts()
+    .then(posts => dispatch({ type: FETCH_POSTS, posts }))
 
-export const addPost = (post, callback) => {
-  return (dispatch) => {
-    API.addPost(post).then(() => callback())
-    dispatch({ type: ADD_POST, post })
-  }
-}
+export const addPost = (post) =>
+  API.addPost(post)
+    .then((posts) => dispatch({ type: ADD_POST, post }))
 
-export const fetchPostById = (id) => {
-  return (dispatch) => {
-    API.fetchPostById(id).then(posts => {
-      dispatch({ type: FETCH_POST_BY_ID, posts })
-    })
-  }
-}
+export const fetchPostById = (id) =>
+  API.fetchPostById(id)
+    .then(posts => dispatch({ type: FETCH_POST_BY_ID, posts }))
 
 export const votePost = (postId, option) => {
   return (dispatch) => {
