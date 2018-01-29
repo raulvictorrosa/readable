@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-// import { Switch, Link, Route, withRouter } from 'react-router-dom'
 import { PropTypes } from 'prop-types';
 import compose from 'recompose/compose';
-
-// import { sortPost } from '../actions/posts'
-import { fetchCategories } from '../actions/categories'
-
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-import Header from './sidebar';
-import Sidebar from './header';
+// import { fetchPosts } from '../actions/posts'
+// import { fetchCategories } from '../actions/categories'
+import { getAllCategories } from '../actions/categories';
+import { getAllPostsAndComments } from '../actions/posts';
+
+import Header from './header';
+import Sidebar from './sidebar';
 import Content from './content';
-// import Home from './Home'
-// import PostNew from './posts/PostNew'
+// import Footer from './footer';
 
 const styles = theme => ({
   root: {
@@ -48,14 +47,15 @@ const styles = theme => ({
 
 class Index extends Component {
   static propTypes = {
-  //   posts: PropTypes.array,
-  //   categories: PropTypes.array,
     classes: PropTypes.object.isRequired,
   }
 
   componentDidMount() {
+    this.props.fetchCategories();
+    this.props.fetchPostsAndComments();
+
     // this.props.fetchPosts()
-    this.props.fetchCategories()
+    // this.props.fetchCategories()
   }
 
   render() {
@@ -64,31 +64,18 @@ class Index extends Component {
     return (
       <div className={classes.root}>
         <div className={classes.appFrame}>
-          <Header />
-          <Sidebar />
+          <Header/>
+          <Sidebar/>
 
           <main className={classes.content}>
             <Grid container className={classes.root}>
-              <Content />
-
-              {/* <Route exact path='/:category' component={Category} />
-              <Route path='/:category/:post_id' component={PostDetail} /> */}
-
-              {/* <Switch>   */}
-                {/* <Route exact path="/" component={Home} /> */}
-                {/* <Route exact path="/post-new" component={PostNew} /> */}
-                {/* <Route exact path="/:category" component={Category} /> */}
-                {/* <Route exact path="/:category" component={Home} /> */}
-                {/* <Route exact path="/:category/:postId" component={PostDetail} /> */}
-                {/* <Route path="/:category/:postId/edit" component={EditPost} /> */}
-                {/* <Route path="/:category/:postId/comment" component={NewComment} /> */}
-                {/* <Route path="/:category/:postId/:commentId/edit" component={EditComment} /> */}
-              {/* </Switch>  */}
+              <Content/>
             </Grid>
           </main>
+          {/* <Footer/> */}
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -96,7 +83,11 @@ export default compose(
   withStyles(styles),
   withRouter,
   connect(undefined, {
-    // fetchPosts,
-    fetchCategories
+    fetchCategories: getAllCategories,
+    fetchPostsAndComments: getAllPostsAndComments
   }),
+  // connect(undefined, {
+  //   fetchPosts,
+  //   fetchCategories
+  // }),
 )(Index);
