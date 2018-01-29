@@ -6,9 +6,9 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import registerServiceWorker from './registerServiceWorker';
 import Index from './components';
-import reducer from './reducers'
-
-import './styles/index.css';
+import reducers from './reducers'
+import 'normalize.css';
+// import './styles/index.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -22,7 +22,7 @@ const logger = store => next => action => {
 }
 
 const store = createStore(
-  reducer,
+  reducers,
   composeEnhancers(
     // applyMiddleware(thunk)
     applyMiddleware(logger, thunk)
