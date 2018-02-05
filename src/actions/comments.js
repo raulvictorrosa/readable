@@ -1,50 +1,81 @@
-import API from '../api'
+import Api from '../api';
 import {
-  FETCH_COMMENTS,
-  ADD_COMMENT,
-  // FETCH_COMMENT,
-  // VOTE_COMMENT,
-  UPVOTE_COMMENT,
-  DOWNVOTE_COMMENT,
-  EDIT_COMMENT,
-  DELETE_COMMENT,
-} from '../actions'
+  GET_ALL_COMMENTS_SUCCESS,
+  CREATE_COMMENT_SUCCESS,
+  EDIT_COMMENT_SUCCESS,
+  DELETE_COMMENT_SUCCESS,
+  UPVOTE_COMMENT_SUCCESS,
+  DOWNVOTE_COMMENT_SUCCESS
+} from '../actions/constants';
 
-export const fetchComments = (postId) =>
-  API.fetchComments(postId).then(comments => {
-    dispatch({ type: FETCH_COMMENTS, postId, comments })
-  })
+export const getAllComments = (postId) => (dispatch) => {
+  return Api.getComments(postId)
+    .then(comments => dispatch(getAllCommentsSuccess(comments)));
+}
 
-export const addComment = (comment, postId, callback) => {
-  return (dispatch) => {
-    API.addComment(comment).then(comment => {
-      dispatch({ type: ADD_COMMENT, parentId, comment })
-    }).then(() => callback())
+const getAllCommentsSuccess = (comments) => {
+  return {
+    type: GET_ALL_COMMENTS_SUCCESS,
+    comments
   }
 }
 
-//TODO: Add action to FETCH_COMMENT
+export const createComment = (parentId, comment) => (dispatch) => {
+  Api.createComment(parentId, comment)
+    .then((comment) => dispatch(createCommentSuccess(comment)));
+}
 
-// export const voteComment = (commentId, parentId, option) => {
-//   return (dispatch) => {
-//     API.voteComment(commentId, option).then(updatedComment => {
-//       dispatch({ type: VOTE_COMMENT, updatedComment, commentId, parentId })
-//     })
-//   }
-// }
-
-export const editComment = (commentId, parentId, timestamp, body, callback) => {
-  return (dispatch) => {
-    API.editComment(commentId, timestamp, body)
-      .then(updatedComment => {
-        dispatch({ type: EDIT_COMMENT, updatedComment, commentId, parentId })
-      }).then(() => callback())
+const createCommentSuccess = (comment) => {
+  return {
+    type: CREATE_COMMENT_SUCCESS,
+    comment
   }
 }
 
-export const deleteComment = (commentId, callback) => {
-  return (dispatch) => {
-    API.deleteComment(commentId).then(() => callback())
-    dispatch({ type: DELETE_COMMENT, commentId })
+export const editComment = (id, comment) => (dispatch) => {
+  Api.editComment(id, comment)
+    .then((comment) => dispatch(editCommentSuccess(comment)));
+}
+
+const editCommentSuccess = (comment) => {
+  return {
+    type: EDIT_COMMENT_SUCCESS,
+    comment
+  }
+}
+
+export const deleteComment = (id) => (dispatch) => {
+  Api.deleteComment(id)
+    .then(() => dispatch(deleteCommentSuccess(id)));
+}
+
+const deleteCommentSuccess = (id) => {
+  return {
+    type: DELETE_COMMENT_SUCCESS,
+    id
+  }
+}
+
+export const upvoteComment = (id) => (dispatch) => {
+  Api.upvoteComment(id)
+    .then(({ id }) => dispatch(upvoteCommentSuccess(id)));
+}
+
+const upvoteCommentSuccess = (id) => {
+  return {
+    type: UPVOTE_COMMENT_SUCCESS,
+    id
+  }
+}
+
+export const downvoteComment = (id) => (dispatch) => {
+  Api.downvoteComment(id)
+    .then(({ id }) => dispatch(downvoteCommentSuccess(id)));
+}
+
+const downvoteCommentSuccess = (id) => {
+  return {
+    type: DOWNVOTE_COMMENT_SUCCESS,
+    id
   }
 }
