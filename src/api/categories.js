@@ -1,11 +1,7 @@
-import { BASE_URL, headers } from './constants';
+import { BASE_URL, HEADERS } from './constants';
 
-/**
-* @description Get all of the categories available for the app. List is found in categories.js. Feel free to extend this list as you desire.
-* @param {string} category - The category of the posts
-* @returns {Promise} Promise array of objects that contains the posts related to the category
-*/
-export const fetchCategories = () =>
-  fetch(`${BASE_URL}/categories`, { headers })
+export const getCategories = () => {
+  return fetch(`${BASE_URL}/categories`, { headers: HEADERS })
     .then(res => res.json())
-    .then(data => data.categories)
+    .then(data => data.categories);
+}
