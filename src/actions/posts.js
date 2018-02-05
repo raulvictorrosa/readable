@@ -1,56 +1,87 @@
-import API from '../api'
+import Api from '../api';
+import { getAllComments } from '../actions/comments';
 import {
-  FETCH_POSTS_BY_CATEGORY,
-  FETCH_POSTS,
-  ADD_POST,
-  FETCH_POST_BY_ID,
-  // VOTE_POST,
-  EDIT_POST,
-  DELETE_POST,
-  SORT_POST,
-} from '../actions'
+  GET_ALL_POSTS_SUCCESS,
+  CREATE_POST_SUCCESS,
+  EDIT_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
+  UPVOTE_POST_SUCCESS,
+  DOWNVOTE_POST_SUCCESS
+} from '../actions/constants';
+import { wait } from '../utils/helper';
 
-export const fetchPostsByCategory = (category) =>
-  API.fetchPostsByCategory(category)
-    .then(posts => dispatch({ type: FETCH_POSTS_BY_CATEGORY, posts }))
+export const getAllPostsAndComments = () => (dispatch) => {
+  wait(2000)
+    .then(() => Api.getPosts())
+    .then(posts => {
+      dispatch(getAllPostsSuccess(posts));
+      posts.map(({ id }) => dispatch(getAllComments(id)));
+    });
+}
 
-export const fetchPosts = () =>
-  API.fetchPosts()
-    .then(posts => dispatch({ type: FETCH_POSTS, posts }))
-
-export const addPost = (post) =>
-  API.addPost(post)
-    .then((posts) => dispatch({ type: ADD_POST, post }))
-
-export const fetchPostById = (id) =>
-  API.fetchPostById(id)
-    .then(posts => dispatch({ type: FETCH_POST_BY_ID, posts }))
-
-export const votePost = (postId, option) => {
-  return (dispatch) => {
-    API.votePost(postId, option).then(post => {
-      dispatch({ type: VOTE_POST, postId, option })
-    })
+const getAllPostsSuccess = (posts) => {
+  return {
+    type: GET_ALL_POSTS_SUCCESS,
+    posts
   }
 }
 
-export const editPost = (postId, title, body, callback) => {
-  return (dispatch) => {
-    API.editPost(postId, title, body).then(updatedPost => {
-      dispatch({ type: EDIT_POST, updatedPost, postId })
-    }).then(() => callback())
+export const createPost = (data) => (dispatch) => {
+  Api.createPost(data)
+    .then(post => dispatch(createPostSuccess(post)));
+}
+
+const createPostSuccess = (post) => {
+  return {
+    type: CREATE_POST_SUCCESS,
+    post
   }
 }
 
-export const deletePost = (postId, callback) => {
-  return dispatch => {
-    API.deletePost(postId).then(() => callback())
-    dispatch({ type: DELETE_POST, postId })
+export const editPost = (id, data) => (dispatch) => {
+  Api.editPost(id, data)
+    .then((post) => dispatch(editPostSuccess(post)));
+}
+
+const editPostSuccess = (post) => {
+  return {
+    type: EDIT_POST_SUCCESS,
+    post
   }
 }
 
-export const sortPost = (sortKey) => {
-  return dispatch => {
-    dispatch({ type: SORT_POST, sortKey })
+export const deletePost = (id) => (dispatch) => {
+  Api.deletePost(id)
+    .then(() => dispatch(deletePostSuccess(id)));
+}
+
+const deletePostSuccess = (id) => {
+  return {
+    type: DELETE_POST_SUCCESS,
+    id
+  }
+}
+
+export const upvotePost = (id) => (dispatch) => {
+  Api.upvotePost(id)
+    .then(({ id }) => dispatch(upvotePostSuccess(id)));
+}
+
+const upvotePostSuccess = (id) => {
+  return {
+    type: UPVOTE_POST_SUCCESS,
+    id
+  }
+}
+
+export const downvotePost = (id) => (dispatch) => {
+  Api.downvotePost(id)
+    .then(({ id }) => dispatch(downvotePostSuccess(id)));
+}
+
+const downvotePostSuccess = (id) => {
+  return {
+    type: DOWNVOTE_POST_SUCCESS,
+    id
   }
 }
