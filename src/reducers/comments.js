@@ -1,51 +1,66 @@
 import {
-  FETCH_COMMENTS,
-  ADD_COMMENT,
-  // FETCH_COMMENT,
-  // VOTE_COMMENT,
-  EDIT_COMMENT,
-  DELETE_COMMENT,
-} from '../actions'
+  GET_ALL_COMMENTS_SUCCESS,
+  CREATE_COMMENT_SUCCESS,
+  EDIT_COMMENT_SUCCESS,
+  DELETE_COMMENT_SUCCESS,
+  UPVOTE_COMMENT_SUCCESS,
+  DOWNVOTE_COMMENT_SUCCESS
+} from '../actions/constants';
 
-function comments(state = {}, action) {
-  const { comments, commentId, parentId, updatedComment } = action
-  switch (action.type) {
-    case FETCH_COMMENTS:
-      return Object.assign({}, state, { [parentId]: comments })
-
-    case ADD_COMMENT:
-      return Object.assign({}, state, { [parentId]: comments })
-
-    //TODO: Add reducer to FETCH_COMMENT
-
-    // case VOTE_COMMENT:
-    //   return {
-    //     ...state,
-    //     [parentId]: state[parentId].map(comment => {
-    //       if (comment.id === commentId) {
-    //         comment = updatedComment
-    //       }
-    //       return comment
-    //     })
-    //   }
-
-    case EDIT_COMMENT:
-      return {
+const comments = (state = [], action) => {
+  switch(action.type) {
+    case GET_ALL_COMMENTS_SUCCESS:
+      return [
         ...state,
-        [parentId]: state[parentId].map(comment => {
-          if (comment.id === commentId) {
-            comment = updatedComment
-          }
-          return comment
-        })
-      }
-
-    case DELETE_COMMENT:
-      return state
-
+        ...action.comments
+      ];
+    case CREATE_COMMENT_SUCCESS:
+      return [
+        ...state,
+        action.comment
+      ];
+    case EDIT_COMMENT_SUCCESS:
+      return state.map(c => comment(c, action));
+    case DELETE_COMMENT_SUCCESS:
+      return [
+        ...state.filter(comment => comment.id !== action.id)
+      ];
+    case UPVOTE_COMMENT_SUCCESS:
+    case DOWNVOTE_COMMENT_SUCCESS:
+      return state.map(c => comment(c, action));
     default:
-      return state
+      return state;
   }
 }
 
-export default comments
+const comment = (state = {}, action) => {
+  switch(action.type) {
+    case EDIT_COMMENT_SUCCESS:
+      if (state.id !== action.comment.id) {
+        return state;
+      }
+      return {
+        ...action.comment
+      }
+    case UPVOTE_COMMENT_SUCCESS:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore + 1
+      }
+    case DOWNVOTE_COMMENT_SUCCESS:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore - 1
+      }
+    default:
+      return state;
+  }
+}
+
+export default comments;

@@ -1,13 +1,12 @@
-import { FETCH_CATEGORIES } from '../actions'
+import { GET_ALL_CATEGORIES_SUCCESS } from '../actions/constants';
 
-function categories(state = [], action) {
-  switch (action.type) {
-    case FETCH_CATEGORIES:
-      return action.categories
-
+const categories = (state = [], action) => {
+  switch(action.type) {
+    case GET_ALL_CATEGORIES_SUCCESS:
+      return action.categories;
     default:
-      return state
+      return state;
   }
 }
 
-export default categories
+export default categories;

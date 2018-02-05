@@ -1,60 +1,63 @@
-// Reducer is pure function
-// Return one and the same result if the same arguments are passed in
-// Depend solely on the arguments passed into them
-// Do not produce side effects
-// import sortBy from 'sort-by'
 import {
-  FETCH_POSTS_BY_CATEGORY,
-  FETCH_POSTS,
-  ADD_POST,
-  EDIT_POST,
-  DELETE_POST,
-  // VOTE_POST,
-  // SORT_POST,
-} from '../actions'
+  GET_ALL_POSTS_SUCCESS,
+  CREATE_POST_SUCCESS,
+  EDIT_POST_SUCCESS,
+  DELETE_POST_SUCCESS,
+  UPVOTE_POST_SUCCESS,
+  DOWNVOTE_POST_SUCCESS
+} from '../actions/constants';
 
-function posts(state = [], action) {
-  const { posts, post, postId, updatedPost, sortKey } = action
-  switch (action.type) {
-    case FETCH_POSTS_BY_CATEGORY:
-      return posts.filter(post => !(post.deleted))
-
-    case FETCH_POSTS:
-      return action.posts.filter(post => !(post.deleted))
-
-    case ADD_POST:
-      return state.concat([post])
-
-    case EDIT_POST:
-      return state.map(post => {
-        if (post.id === postId) {
-          post = updatedPost
-        }
-        return post
-      })
-
-    case DELETE_POST:
-      return state.filter(post => post.id !== postId)
-
-    // case VOTE_POST:
-    //   return state.map(post => {
-    //     if (post.id === action.postId) {
-    //       if (action.option === "upVote") {
-    //         post.voteScore += 1
-    //       }
-    //       if (action.option === "downVote") {
-    //         post.voteScore -= 1
-    //       }
-    //     }
-    //     return post
-    //   })
-
-    // case SORT_POST:
-    //   return [].concat(state.sort(sortBy("-" + sortKey)))
-
+const posts = (state = [], action) => {
+  switch(action.type) {
+    case GET_ALL_POSTS_SUCCESS:
+      return action.posts;
+    case CREATE_POST_SUCCESS:
+      return [
+        ...state,
+        action.post
+      ];
+    case EDIT_POST_SUCCESS:
+      return state.map(p => post(p, action));
+    case DELETE_POST_SUCCESS:
+      return [
+        ...state.filter(post => post.id !== action.id)
+      ]
+    case UPVOTE_POST_SUCCESS:
+    case DOWNVOTE_POST_SUCCESS:
+      return state.map(p => post(p, action));
     default:
-      return state
+      return state;
   }
 }
 
-export default posts
+const post = (state = {}, action) => {
+  switch(action.type) {
+    case EDIT_POST_SUCCESS:
+      if (state.id !== action.post.id) {
+        return state;
+      }
+      return {
+        ...action.post
+      }
+    case UPVOTE_POST_SUCCESS:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore + 1
+      }
+    case DOWNVOTE_POST_SUCCESS:
+      if (state.id !== action.id) {
+        return state;
+      }
+      return {
+        ...state,
+        voteScore: state.voteScore - 1
+      }
+    default:
+      return state;
+  }
+}
+
+export default posts;
