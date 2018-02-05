@@ -8,7 +8,8 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import { capitalize } from '../utils/helper';
+// import { capitalize } from '../utils/helper';
+import { capitalizeFirst } from '../utils/helper';
 
 const styles = theme => ({
   nested: {
@@ -22,7 +23,8 @@ const styles = theme => ({
 class Categories extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-  };
+    categories: PropTypes.array.isRequired,
+  }
 
   state = { open: true }
 
@@ -41,24 +43,18 @@ class Categories extends Component {
         </ListItem>
         <Collapse component="li" in={this.state.open} timeout="auto" unmountOnExit>
           <List disablePadding>
-            {window.location.pathname === `/categories` ?
-              <ListItem button key="categories" className={classes.nested}>
-                <ListItemText primary="All" />
-              </ListItem>
-              :
-              <ListItem button key="categories" component={Link} to="/categories" className={classes.nested}>
-                <ListItemText primary="All" />
-              </ListItem>
-            }
-
             {categories.map((category, index) => (
-              window.location.pathname === `/category/${category.path}` ?
+              // window.location.pathname === `/category/${category.path}` ?
+              window.location.pathname === `/${category.path}/posts` ?
                 <ListItem button key={category.path} className={classes.nested}>
-                  <ListItemText primary={capitalize(category.name)} />
+                  <ListItemText primary={capitalizeFirst(category.name)} />
+                  {/* <ListItemText primary={capitalize(category.name)} /> */}
                 </ListItem>
                 :
-                <ListItem button key={category.path} component={Link} to={`/category/${category.path}`} className={classes.nested}>
-                  <ListItemText primary={capitalize(category.name)} />
+                // <ListItem button key={category.path} component={Link} to={`/category/${category.path}`} className={classes.nested}>
+                <ListItem button key={category.path} component={Link} to={`/${category.path}/posts`} className={classes.nested}>
+                  <ListItemText primary={capitalizeFirst(category.name)} />
+                  {/* <ListItemText primary={capitalize(category.name)} /> */}
                 </ListItem>
             ))}
           </List>
