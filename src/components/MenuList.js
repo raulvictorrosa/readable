@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom'
 import { PropTypes } from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -29,7 +29,7 @@ const MenuList = (props) => {
     <div>
       <List>
         <ListItem>
-          <Typography color="accent" type="title" noWrap>React Readble</Typography>
+          <Typography color="secondary" type="title" noWrap>React Readble</Typography>
         </ListItem>
       </List>
       <Divider />
@@ -40,7 +40,7 @@ const MenuList = (props) => {
         </ListItem>
         <Collapse component="li" in>
           <List disablePadding>
-            <ListItem button className={classes.nested} component={Link} to='/post-new'>
+            <ListItem button className={classes.nested} component={Link} to='/posts/new'>
               <ListItemIcon>
                 <AddCircle />
               </ListItemIcon>
