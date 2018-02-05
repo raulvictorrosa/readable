@@ -1,7 +1,14 @@
-import API from '../api'
-import { FETCH_CATEGORIES } from '../actions'
+import Api from '../api';
+import { GET_ALL_CATEGORIES_SUCCESS } from '../actions/constants';
 
-export const fetchCategories = () => (dispatch) =>
-  API.fetchCategories()
-    .then(categories => dispatch({ type: FETCH_CATEGORIES, categories }));
+export const getAllCategories = () => (dispatch) => {
+  Api.getCategories()
+    .then(categories => dispatch(getAllCategoriesSuccess(categories)));
+}
 
+const getAllCategoriesSuccess = (categories) => {
+  return {
+    type: GET_ALL_CATEGORIES_SUCCESS,
+    categories
+  }
+}
