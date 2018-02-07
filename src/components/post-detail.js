@@ -13,25 +13,28 @@ const PostDetail = (props) => {
   const { id, title, body, author, timestamp, voteScore, comments = [],
     onUpvotePost, onDownvotePost } = props;
 
-  return (
-    <div>
-      <div className='content-container-post'>
-        <Stats
-          onUpvote={() => onUpvotePost(id)}
-          onDownvote={() => onDownvotePost(id)}
-          voteScore={voteScore}
-        />
-        <div className='post-detail'>
-          <h2 className='heading'>{title}</h2>
-          <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
-          <p className='post-body'>{body}</p>
-          <ContentControl type={CONTENT_POSTS} id={id} commentsCount={comments.length} />
+  if (id) {
+    return (
+      <div>
+        <div className='content-container-post'>
+          <Stats
+            onUpvote={() => onUpvotePost(id)}
+            onDownvote={() => onDownvotePost(id)}
+            voteScore={voteScore}
+          />
+          <div className='post-detail'>
+            <h2 className='heading'>{title}</h2>
+            <p className='author-date-time'>by <b>{author}</b> at {formatDate(timestamp)}</p>
+            <p className='post-body'>{body}</p>
+            <ContentControl type={CONTENT_POSTS} id={id} commentsCount={comments.length} />
+          </div>
         </div>
+        <LineSeparator />
+        <CommentList postId={id} comments={comments} />
       </div>
-      <LineSeparator />
-      <CommentList postId={id} comments={comments} />
-    </div>
-  )
+    );
+  }
+  return <h3>Post don't exist or it is deleted!</h3>;
 }
 
 export default connect(
