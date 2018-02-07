@@ -36,7 +36,7 @@ class Content extends Component {
             <PostDetail {...this.filterPostById(posts, match.params.id)} />
           )} />
           {/* <Route exact path='/category/:name' render={({ match }) => ( */}
-          <Route exact path='/:name/posts' render={({ match }) => (
+          <Route exact path='/:category' render={({ match }) => (
             <PostList posts={this.filterPostByCategory(posts, match.params.name)} />
           )} />
         </Switch>

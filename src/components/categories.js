@@ -45,14 +45,14 @@ class Categories extends Component {
           <List disablePadding>
             {categories.map((category, index) => (
               // window.location.pathname === `/category/${category.path}` ?
-              window.location.pathname === `/${category.path}/posts` ?
+              window.location.pathname === `/${category.path}` ?
                 <ListItem button key={category.path} className={classes.nested}>
                   <ListItemText primary={capitalizeFirst(category.name)} />
                   {/* <ListItemText primary={capitalize(category.name)} /> */}
                 </ListItem>
                 :
                 // <ListItem button key={category.path} component={Link} to={`/category/${category.path}`} className={classes.nested}>
-                <ListItem button key={category.path} component={Link} to={`/${category.path}/posts`} className={classes.nested}>
+                <ListItem button key={category.path} component={Link} to={`/${category.path}`} className={classes.nested}>
                   <ListItemText primary={capitalizeFirst(category.name)} />
                   {/* <ListItemText primary={capitalize(category.name)} /> */}
                 </ListItem>
