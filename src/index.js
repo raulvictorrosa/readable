@@ -3,12 +3,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
+import Thunk from 'redux-thunk'
+import Reducers from './reducers'
 import registerServiceWorker from './registerServiceWorker';
 import Index from './components';
-import reducers from './reducers'
 import 'normalize.css';
-// import './styles/index.css';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
@@ -22,10 +21,10 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 // }
 
 const store = createStore(
-  reducers,
+  Reducers,
   composeEnhancers(
-    applyMiddleware(thunk)
-    // applyMiddleware(logger, thunk)
+    applyMiddleware(Thunk)
+    // applyMiddleware(logger, Thunk)
   )
 )
 
