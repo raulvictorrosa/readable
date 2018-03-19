@@ -1,19 +1,31 @@
-// magic keywords used in state
-export const CONTENT_POSTS = 'posts';
-export const CONTENT_COMMENTS = 'comments';
+/**
+* @description Action to fetch categories
+*/
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES'
 
-// redux actions
-export const GET_ALL_CATEGORIES_SUCCESS = 'GET_ALL_CATEGORIES_SUCCESS';
-export const GET_ALL_POSTS_SUCCESS = 'GET_ALL_POSTS_SUCCESS';
-export const CREATE_POST_SUCCESS = 'CREATE_POST_SUCCESS';
-export const EDIT_POST_SUCCESS = 'EDIT_POST_SUCCESS';
-export const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
-export const UPVOTE_POST_SUCCESS = 'UPVOTE_POST_SUCCESS';
-export const DOWNVOTE_POST_SUCCESS = 'DOWNVOTE_POST_SUCCESS';
-export const GET_ALL_COMMENTS_SUCCESS = 'GET_ALL_COMMENTS_SUCCESS';
-export const CREATE_COMMENT_SUCCESS = 'CREATE_COMMENT_SUCCESS';
-export const EDIT_COMMENT_SUCCESS = 'EDIT_COMMENT_SUCCESS';
-export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
-export const UPVOTE_COMMENT_SUCCESS = 'UPVOTE_COMMENT_SUCCESS';
-export const DOWNVOTE_COMMENT_SUCCESS = 'DOWNVOTE_COMMENT_SUCCESS';
-export const SET_SORT_BY = 'SET_SORT_BY';
+/**
+* @description Actions related to posts
+*/
+export const FETCH_POSTS_BY_CATEGORY = 'FETCH_POSTS_BY_CATEGORY'
+export const FETCH_POSTS = 'FETCH_POSTS'
+export const ADD_POST = 'ADD_POST'
+export const FETCH_POST_BY_ID = 'FETCH_POST_BY_ID'
+// export const VOTE_POST = 'VOTE_POST'
+export const UPVOTE_POST = 'UPVOTE_POST'
+export const DOWNVOTE_POST = 'DOWNVOTE_POST'
+export const EDIT_POST = 'EDIT_POST'
+export const DELETE_POST = 'DELETE_POST'
+
+/**
+* @description Actions related to comments
+*/
+export const FETCH_COMMENTS = 'FETCH_COMMENTS'
+export const ADD_COMMENT = 'ADD_COMMENT'
+export const FETCH_COMMENT = 'FETCH_COMMENT'
+// export const VOTE_COMMENT = 'VOTE_COMMENT'
+export const UPVOTE_COMMENT = 'UPVOTE_COMMENT'
+export const DOWNVOTE_COMMENT = 'DOWNVOTE_COMMENT'
+export const EDIT_COMMENT = 'EDIT_COMMENT'
+export const DELETE_COMMENT = 'DELETE_COMMENT'
+
+export const SORT_BY = 'SORT_BY'
