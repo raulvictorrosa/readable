@@ -7,16 +7,7 @@ import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import Collapse from 'material-ui/transitions/Collapse';
 import AddCircle from 'material-ui-icons/AddCircle';
-import Categories from './categories';
-
-const styles = theme => ({
-  nested: {
-    paddingLeft: theme.spacing.unit * 4,
-  },
-  menuLinkItem: {
-    textDecoration: 'none'
-  }
-});
+import Categories from './Categories';
 
 const MenuList = (props) => {
   MenuList.propTypes = {
@@ -54,5 +45,14 @@ const MenuList = (props) => {
     </div>
   )
 }
+
+const styles = theme => ({
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+  menuLinkItem: {
+    textDecoration: 'none'
+  }
+});
 
 export default withStyles(styles)(MenuList);
