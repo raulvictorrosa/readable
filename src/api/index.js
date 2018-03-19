@@ -1,19 +1,39 @@
-import { getCategories } from './categories';
-import { getPosts, createPost, editPost, deletePost, upvotePost, downvotePost } from './posts';
-import { getComments, createComment, editComment, deleteComment, upvoteComment, downvoteComment } from './comments';
-
-export default {
-  getCategories,
-  getPosts,
-  createPost,
+import { fetchCategories } from './Categories';
+import {
+  addPost,
   editPost,
   deletePost,
+  // fetchPostsByCategory,
+  fetchPosts,
+  // fetchPostById,
   upvotePost,
   downvotePost,
-  getComments,
-  createComment,
+} from './Posts';
+import {
+  addComment,
   editComment,
   deleteComment,
+  fetchComments,
+  fetchComment,
   upvoteComment,
-  downvoteComment
+  downvoteComment,
+} from './comments';
+
+export default {
+  fetchCategories,
+  // fetchPostsByCategory,
+  addPost,
+  editPost,
+  deletePost,
+  fetchPosts,
+  // fetchPostById,
+  upvotePost,
+  downvotePost,
+  addComment,
+  editComment,
+  deleteComment,
+  fetchComments,
+  fetchComment,
+  upvoteComment,
+  downvoteComment,
 }
