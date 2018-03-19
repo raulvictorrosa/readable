@@ -6,20 +6,6 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import MenuList from './MenuList';
 
-const drawerWidth = 240;
-
-const styles = theme => ({
-  drawerHeader: theme.mixins.toolbar,
-  drawerPaper: {
-    width: 250,
-    [theme.breakpoints.up('md')]: {
-      width: drawerWidth,
-      position: 'relative',
-      height: '100%',
-    },
-  },
-})
-
 class Sidebar extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -73,5 +59,19 @@ class Sidebar extends Component {
     );
   }
 }
+
+const drawerWidth = 240;
+
+const styles = theme => ({
+  drawerHeader: theme.mixins.toolbar,
+  drawerPaper: {
+    width: 250,
+    [theme.breakpoints.up('md')]: {
+      width: drawerWidth,
+      position: 'relative',
+      height: '100%',
+    },
+  },
+})
 
 export default withStyles(styles, { withTheme: true })(Sidebar)
