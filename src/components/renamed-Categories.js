@@ -60,7 +60,7 @@ class Categories extends Component {
     return (
       <div>
         <ListItem button onClick={this.handleClick}>
-          <ListItemText primary="None Categories" />
+          <ListItemText primary="No Categories" />
         </ListItem>
       </div>
     )
