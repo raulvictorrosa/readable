@@ -1,15 +1,15 @@
 import {
-  FETCH_POSTS_BY_CATEGORY,
+  // FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
-  ADD_POST,
-  FETCH_POST_BY_ID,
+  // ADD_POST,
+  // FETCH_POST_BY_ID,
   // VOTE_POST,
-  EDIT_POST,
-  DELETE_POST,
-  SORT_POST,
-} from '../actions/constants'
+  // EDIT_POST,
+  // DELETE_POST,
+  // SORT_POST,
+} from './Constants'
 
-export const getPosts = posts => ({
+export const getPosts = (posts) => ({
   type: FETCH_POSTS,
   posts
 })
