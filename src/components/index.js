@@ -5,7 +5,7 @@ import Grid from 'material-ui/Grid';
 
 import Header from './Header';
 import Sidebar from './Sidebar';
-// import Content from './Content';
+import Content from './Content';
 
 const Index = (props) => {
   Index.propTypes = {
@@ -22,7 +22,7 @@ const Index = (props) => {
 
         <main className={classes.content}>
           <Grid container className={classes.root}>
-            {/* <Content /> */}
+            <Content />
           </Grid>
         </main>
       </div>
