@@ -7,8 +7,6 @@ import { fetchPosts } from '../api/Posts'
 import Grid from 'material-ui/Grid';
 
 import PostCard from './PostCard'
-// import SinglePost from '../post/SinglePost'
-
 
 class PostList extends Component {
   componentDidMount() {
