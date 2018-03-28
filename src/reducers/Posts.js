@@ -4,11 +4,11 @@
 // Do not produce side effects
 // import sortBy from 'sort-by'
 import {
-  FETCH_POSTS_BY_CATEGORY,
+  // FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
-  ADD_POST,
-  EDIT_POST,
-  DELETE_POST,
+  // ADD_POST,
+  // EDIT_POST,
+  // DELETE_POST,
   // VOTE_POST,
   // SORT_POST,
 } from '../actions/Constants'
