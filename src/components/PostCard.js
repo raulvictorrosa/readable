@@ -33,7 +33,7 @@ class PostCard extends Component {
                 {author}
               </Avatar>
             }
-            action={<PostOptions />}
+            action={<PostOptions postId={id} />}
             title={title}
             subheader={Moment(timestamp).format('MMMM DD, YYYY')}
           />
