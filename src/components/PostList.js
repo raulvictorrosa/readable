@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux'
 import compose from 'recompose/compose';
-import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
+// import { withRouter } from 'react-router-dom';
 import { getPosts } from '../actions/Posts'
 import { fetchPosts } from '../api/Posts'
 import Grid from 'material-ui/Grid';
@@ -36,6 +36,6 @@ const mapStateToProps = (posts) => ({
 })
 
 export default compose(
-  withRouter,
+  // withRouter,
   connect(mapStateToProps),
 )(PostList)
