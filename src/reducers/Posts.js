@@ -9,7 +9,7 @@ import {
   // ADD_POST,
   // EDIT_POST,
   // DELETE_POST,
-  // VOTE_POST,
+  VOTE_POST,
   // SORT_POST,
 } from '../actions/Constants'
 
@@ -34,6 +34,9 @@ const posts = (state = [], action) => {
     //     }
     //     return post
     //   })
+
+    case VOTE_POST:
+      return state.map(post => (action.post.id === post.id ? action.post : post))
 
     // case DELETE_POST:
     //   return state.filter(post => post.id !== postId)
