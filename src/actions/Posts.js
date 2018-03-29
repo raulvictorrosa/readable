@@ -3,7 +3,7 @@ import {
   FETCH_POSTS,
   // ADD_POST,
   // FETCH_POST_BY_ID,
-  // VOTE_POST,
+  VOTE_POST,
   // EDIT_POST,
   // DELETE_POST,
   // SORT_POST,
@@ -44,13 +44,10 @@ export const getPosts = (posts) => ({
 //   API.fetchPostById(id)
 //     .then(posts => dispatch({ type: FETCH_POST_BY_ID, posts }))
 
-// export const votePost = (postId, option) => {
-//   return (dispatch) => {
-//     API.votePost(postId, option).then(post => {
-//       dispatch({ type: VOTE_POST, postId, option })
-//     })
-//   }
-// }
+export const votePostCount = (post) => ({
+  type: VOTE_POST,
+  post
+})
 
 // export const editPost = (postId, title, body, callback) => {
 //   return (dispatch) => {
