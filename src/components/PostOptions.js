@@ -44,22 +44,22 @@ class PostOptions extends Component {
     return (
       <div>
         <Manager>
-          <Target>
-            <IconButton
-              aria-label="More"
-              aria-owns={this.state.open ? 'menu-list' : null}
-              aria-haspopup="true"
-              onClick={this.handleClick}
+          <ClickAwayListener onClickAway={this.handleClose}>
+            <Target>
+              <IconButton
+                aria-label="More"
+                aria-owns={this.state.open ? 'menu-list' : null}
+                aria-haspopup="true"
+                onClick={this.handleClick}
+              >
+                <MoreVertIcon />
+              </IconButton>
+            </Target>
+            <Popper
+              placement="bottom-start"
+              eventsEnabled={open}
+              className={classNames({ [classes.popperClose]: !open })}
             >
-              <MoreVertIcon />
-            </IconButton>
-          </Target>
-          <Popper
-            placement="bottom-start"
-            eventsEnabled={open}
-            className={classNames({ [classes.popperClose]: !open })}
-          >
-            <ClickAwayListener onClickAway={this.handleClose}>
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
@@ -68,8 +68,8 @@ class PostOptions extends Component {
                   </MenuList>
                 </Paper>
               </Grow>
-            </ClickAwayListener>
-          </Popper>
+            </Popper>
+          </ClickAwayListener>
         </Manager>
       </div>
     );
