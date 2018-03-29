@@ -9,9 +9,3 @@ export const headers = {
   'Accept': 'application/json',
   'Authorization': token
 }
-
-// magic keywords used for backend server request
-export const OPTION_UPVOTE = 'upVote';
-export const OPTION_DOWNVOTE = 'downVote';
-
-
