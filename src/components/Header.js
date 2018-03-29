@@ -7,8 +7,6 @@ import Toolbar from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
-const drawerWidth = 240;
-
 class Header extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
@@ -42,7 +40,7 @@ class Header extends Component {
             >
               <MenuIcon />
             </IconButton>
-            <Typography type="title" color="inherit" noWrap>
+            <Typography color="inherit" variant="title" noWrap>
               {currentPageName[0].heading}
             </Typography>
           </Toolbar>
@@ -51,6 +49,8 @@ class Header extends Component {
     );
   }
 }
+
+const drawerWidth = 240;
 
 const styles = theme => ({
   appBar: {

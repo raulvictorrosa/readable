@@ -20,7 +20,7 @@ const MenuList = (props) => {
     <div>
       <List>
         <ListItem>
-          <Typography color="secondary" type="title" noWrap>React Readble</Typography>
+          <Typography color="secondary" variant="title" noWrap>React Readble</Typography>
         </ListItem>
       </List>
       <Divider />

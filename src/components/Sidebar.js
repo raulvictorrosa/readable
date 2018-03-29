@@ -28,7 +28,7 @@ class Sidebar extends Component {
       <div>
         <Hidden mdUp>
           <Drawer
-            type="temporary"
+            variant="temporary"
             anchor={theme.direction === 'rtl' ? 'right' : 'left'}
             open={this.state.mobileOpen}
             classes={{
@@ -43,9 +43,9 @@ class Sidebar extends Component {
           </Drawer>
         </Hidden>
 
-        <Hidden mdDown implementation="css">
+        <Hidden smDown implementation="css">
           <Drawer
-            type="permanent"
+            variant="permanent"
             open
             classes={{
               paper: classes.drawerPaper,
