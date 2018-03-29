@@ -1,4 +1,3 @@
-import { v4 } from 'uuid';
 import { BASE_URL, headers/* , OPTION_UPVOTE, OPTION_DOWNVOTE */ } from './Constants';
 
 /**
@@ -30,19 +29,20 @@ export const fetchPosts = () =>
 * @returns {Promise} Promise object represents the comment added
 */
 // export const addPost = (id, timestamp, title, body, author, category) =>
-export const addPost = (data) =>
+export const addPost = (post) =>
   fetch(`${BASE_URL}/posts`, {
     method: 'POST',
     headers: {
       ...headers,
       'Content-Type': 'application/json'
     },
+    body: JSON.stringify(post)
     // body: JSON.stringify({ id, timestamp, title, body, author, category })
-    body: JSON.stringify({
-      ...data,
-      id: v4(),
-      timestamp: Date.now()
-    })
+    // body: JSON.stringify({
+    //   ...post,
+    //   id: v4(),
+    //   timestamp: Date.now()
+    // })
   }).then(res => res.json())
 
 /**
