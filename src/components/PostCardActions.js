@@ -42,7 +42,7 @@ class PostCardActions extends Component {
   }
 
   handleInsertComment = () => {
-    const { dispatch, postInfo } = this.props;
+    const { /* dispatch,  */postInfo } = this.props;
     const { id } = postInfo
     // fetchPosts().then((posts) => dispatch(getPosts(posts)))
     console.log(`Insert comment on post ${id}`);
@@ -51,7 +51,7 @@ class PostCardActions extends Component {
   render() {
     const { classes, postInfo } = this.props;
     const { commentCount, voteScore } = postInfo;
-    console.log(this.props)
+    // console.log(this.props)
     return (
       <div>
         <CardActions disableActionSpacing>
@@ -90,6 +90,7 @@ class PostCardActions extends Component {
             aria-label="Show more"
             onClick={this.handleExpandClick}
           >
+            {/* <Link to="/search">Add a book</Link> */}
             <ForwardIcon />
           </IconButton>
         </CardActions>
@@ -109,8 +110,11 @@ const styles = theme => ({
 // })
 
 const mapDispatchToProps = (dispatch) => ({
-  voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
-  voteDown: (id) => votePost(id, 'downVote').then((post) => dispatch(votePostCount(post)))
+  // voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
+  // dispatch: dispatch
+  voteDown: (id) => votePost(id, 'downVote').then((post) => dispatch(votePostCount(post))),
+
+  // voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
 })
 
 export default compose(
