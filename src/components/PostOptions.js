@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { Manager, Target, Popper } from 'react-popper';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom'
 import classNames from 'classnames';
-
+import { Manager, Target, Popper } from 'react-popper';
 import { withStyles } from 'material-ui/styles';
 import Grow from 'material-ui/transitions/Grow';
 import Paper from 'material-ui/Paper';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
@@ -29,16 +28,12 @@ class PostOptions extends Component {
     this.setState({ open: false });
   }
 
-  handleEdit = () => {
-    console.log('Edit post')
-  }
-
   handleDelete = () => {
     console.log('Delete post')
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, postId } = this.props;
     const { open } = this.state;
 
     return (
@@ -63,7 +58,7 @@ class PostOptions extends Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleEdit}>Edit</MenuItem>
+                    <MenuItem component={Link} to={`/posts/${postId}/edit`}>Edit</MenuItem>
                     <MenuItem onClick={this.handleDelete}>Delete</MenuItem>
                   </MenuList>
                 </Paper>
