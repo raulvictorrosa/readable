@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { BASE_URL, headers, OPTION_UPVOTE, OPTION_DOWNVOTE } from './Constants';
+import { BASE_URL, headers/* , OPTION_UPVOTE, OPTION_DOWNVOTE */ } from './Constants';
 
 /**
 * @description Get all of the posts for a particular category
@@ -17,6 +17,7 @@ export const fetchPostsByCategory = (category) =>
 export const fetchPosts = () =>
   fetch(`${BASE_URL}/posts`, { headers })
     .then(res => res.json())
+    .then(data => data.filter(item => !item.deleted))
 
 /**
 * @description Add a new post
@@ -59,29 +60,15 @@ export const fetchPostById = (id) =>
 * @param {string} option - Either "upVote" or "downVote"
 * @returns {Promise} Promise object represents the post updated with the vote
 */
-// export const votePost = (id, option) =>
-//   fetch(`${BASE_URL}/posts/${id}`, {
-//     method: 'POST',
-//     headers: {
-//       ...headers,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ option })
-//   }).then(res => res.json())
-const votePost = (option) => (id) => {
-  return fetch(`${BASE_URL}/posts/${id}`,
-    {
-      method: 'POST',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ option })
-    })
-    .then(res => res.json());
-}
-export const upvotePost = votePost(OPTION_UPVOTE);
-export const downvotePost = votePost(OPTION_DOWNVOTE);
+export const votePost = (id, option) =>
+  fetch(`${BASE_URL}/posts/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  }).then(res => res.json())
 
 /**
 * @description Edit the details of an existing post
