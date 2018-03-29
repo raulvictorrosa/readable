@@ -20,9 +20,13 @@ const posts = (state = [], action) => {
 
     case FETCH_POSTS:
       return [
-        ...state,
+        // ...state,
         ...action.posts
       ]
+      // return [
+      //   ...state,
+      //   ...action.posts
+      // ]
 
     // case ADD_POST:
     //   return state.concat([post])
