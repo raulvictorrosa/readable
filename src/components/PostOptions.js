@@ -12,12 +12,6 @@ import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 import IconButton from 'material-ui/IconButton';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-const styles = theme => ({
-  popperClose: {
-    pointerEvents: 'none',
-  },
-})
-
 class PostOptions extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired
@@ -33,6 +27,14 @@ class PostOptions extends Component {
 
   handleClose = () => {
     this.setState({ open: false });
+  }
+
+  handleEdit = () => {
+    console.log('Edit post')
+  }
+
+  handleDelete = () => {
+    console.log('Delete post')
   }
 
   render() {
@@ -61,8 +63,8 @@ class PostOptions extends Component {
               <Grow in={open} id="menu-list" style={{ transformOrigin: '0 0 0' }}>
                 <Paper>
                   <MenuList role="menu">
-                    <MenuItem onClick={this.handleClose}>Edit</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Delete</MenuItem>
+                    <MenuItem onClick={this.handleEdit}>Edit</MenuItem>
+                    <MenuItem onClick={this.handleDelete}>Delete</MenuItem>
                   </MenuList>
                 </Paper>
               </Grow>
@@ -73,5 +75,11 @@ class PostOptions extends Component {
     );
   }
 }
+
+const styles = theme => ({
+  popperClose: {
+    pointerEvents: 'none',
+  },
+})
 
 export default withStyles(styles)(PostOptions);
