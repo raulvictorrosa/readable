@@ -13,23 +13,11 @@ import {
   votePost
 } from '../api/Posts'
 
-export const getPosts = (posts) => ({
-  type: FETCH_POSTS,
-  posts
-})
-
-// export const fetchPosts = () => (dispatch) =>
-//   API.fetchPosts()
-//     .then(posts =>
-//       Promise.all(
-//         posts.map(post =>
-//           API.fetchComments(post.id)
-//             .then(comments => (post.comments = comments))
-//             .then(() => post)
-//         )
-//       )
-//     )
-//     .then(posts => dispatch(fetchPostById(FETCH_POSTS, posts)))
+export const getPosts = () => dispatch =>
+  fetchPosts().then(posts => dispatch({
+    type: FETCH_POSTS,
+    posts
+  }))
 
 // export const fetchPostById = (actionType, posts) => ({
 //   type: FETCH_POSTS,
@@ -48,14 +36,10 @@ export const getPosts = (posts) => ({
 //   API.fetchPostById(id)
 //     .then(posts => dispatch({ type: FETCH_POST_BY_ID, posts }))
 
-// export const votePostCount = (post) => ({
-//   type: VOTE_POST,
-//   post
-// })
 export const votePostCount = (id, option) => dispatch =>
   votePost(id, option).then(post => dispatch({
-  type: VOTE_POST,
-  post
+    type: VOTE_POST,
+    post
   }))
 
 // export const editPost = (postId, title, body, callback) => {

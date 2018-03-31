@@ -3,15 +3,13 @@ import compose from 'recompose/compose';
 import { connect } from 'react-redux'
 // import { withRouter } from 'react-router-dom';
 import { getPosts } from '../actions/Posts'
-import { fetchPosts } from '../api/Posts'
 import Grid from 'material-ui/Grid';
 
 import PostCard from './PostCard'
 
 class PostList extends Component {
   componentDidMount() {
-    const { dispatch } = this.props
-    fetchPosts().then((posts) => dispatch(getPosts(posts)))
+    this.props.fetchPosts()
   }
 
   render() {
@@ -31,11 +29,18 @@ class PostList extends Component {
   }
 }
 
-const mapStateToProps = (posts) => ({
+const mapStateToProps = posts => ({
   ...posts
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchPosts: () => dispatch(getPosts())
 })
 
 export default compose(
   // withRouter,
-  connect(mapStateToProps),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(PostList)
