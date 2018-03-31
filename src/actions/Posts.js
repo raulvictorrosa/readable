@@ -8,6 +8,10 @@ import {
   // DELETE_POST,
   // SORT_POST,
 } from './Constants'
+import {
+  fetchPosts,
+  votePost
+} from '../api/Posts'
 
 export const getPosts = (posts) => ({
   type: FETCH_POSTS,
@@ -44,10 +48,15 @@ export const getPosts = (posts) => ({
 //   API.fetchPostById(id)
 //     .then(posts => dispatch({ type: FETCH_POST_BY_ID, posts }))
 
-export const votePostCount = (post) => ({
+// export const votePostCount = (post) => ({
+//   type: VOTE_POST,
+//   post
+// })
+export const votePostCount = (id, option) => dispatch =>
+  votePost(id, option).then(post => dispatch({
   type: VOTE_POST,
   post
-})
+  }))
 
 // export const editPost = (postId, title, body, callback) => {
 //   return (dispatch) => {
