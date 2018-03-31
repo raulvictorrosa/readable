@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux'
 import { votePostCount } from '../actions/Posts';
-import { votePost } from '../api/Posts'
 import { withRouter } from 'react-router-dom'
 import compose from 'recompose/compose';
 import { withStyles } from 'material-ui/styles';
@@ -107,8 +106,8 @@ const styles = theme => ({
 // })
 
 const mapDispatchToProps = dispatch => ({
-  voteUp: (id) => dispatch(votePostCount(id, 'upVote')),
-  voteDown: (id) => dispatch(votePostCount(id, 'downVote')),
+  voteUp: id => dispatch(votePostCount(id, 'upVote')),
+  voteDown: id => dispatch(votePostCount(id, 'downVote')),
 })
 
 export default compose(
