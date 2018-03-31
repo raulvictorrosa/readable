@@ -107,8 +107,6 @@ const styles = theme => ({
 // })
 
 const mapDispatchToProps = dispatch => ({
-  // voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
-  // voteDown: (id) => votePost(id, 'downVote').then((post) => dispatch(votePostCount(post))),
   voteUp: (id) => dispatch(votePostCount(id, 'upVote')),
   voteDown: (id) => dispatch(votePostCount(id, 'downVote')),
 })
