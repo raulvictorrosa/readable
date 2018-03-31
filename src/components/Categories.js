@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux'
 import { getCategories } from '../actions/Categories';
-import { fetchCategories } from '../api/Categories'
 import { Link, withRouter } from 'react-router-dom'
 import compose from 'recompose/compose';
 import { withStyles } from 'material-ui/styles';
@@ -21,8 +20,7 @@ class Categories extends Component {
   state = { open: true }
 
   componentDidMount() {
-    const { dispatch } = this.props
-    fetchCategories().then((categories) => dispatch(getCategories(categories)))
+    this.props.fetchCategories()
   }
 
   handleClick = () => {
@@ -74,14 +72,21 @@ const styles = theme => ({
   menuLinkItem: {
     textDecoration: 'none'
   }
-});
+})
 
-const mapStateToProps = (categories) => ({
+const mapStateToProps = categories => ({
   ...categories
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchCategories: () => dispatch(getCategories())
 })
 
 export default compose(
   withStyles(styles),
   withRouter,
-  connect(mapStateToProps),
-)(Categories);
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Categories)

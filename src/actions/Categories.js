@@ -1,7 +1,9 @@
 import { FETCH_CATEGORIES } from './Constants'
+import { fetchCategories } from '../api/Categories'
 
-export const getCategories = (categories) => ({
-  type: FETCH_CATEGORIES,
-  categories
-})
+export const getCategories = () => dispatch =>
+  fetchCategories().then(categories => dispatch({
+    type: FETCH_CATEGORIES,
+    categories
+  }))
 
