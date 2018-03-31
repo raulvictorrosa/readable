@@ -31,14 +31,12 @@ class PostCardActions extends Component {
     const { voteUp, postInfo } = this.props;
     const { id } = postInfo
     voteUp(id)
-    // votePost(id, 'upVote').then((post) => voteUp(post))
   }
 
   handleDislike = () => {
     const { voteDown, postInfo } = this.props;
     const { id } = postInfo
     voteDown(id)
-    // votePost(id, 'downVote').then((post) => dispatch(votePostCount(post)))
   }
 
   handleInsertComment = () => {
@@ -51,7 +49,6 @@ class PostCardActions extends Component {
   render() {
     const { classes, postInfo } = this.props;
     const { commentCount, voteScore } = postInfo;
-    // console.log(this.props)
     return (
       <div>
         <CardActions disableActionSpacing>
@@ -109,16 +106,15 @@ const styles = theme => ({
 //   ...posts
 // })
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
   // voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
-  // dispatch: dispatch
-  voteDown: (id) => votePost(id, 'downVote').then((post) => dispatch(votePostCount(post))),
-
-  // voteUp: (id) => votePost(id, 'upVote').then((post) => dispatch(votePostCount(post))),
+  // voteDown: (id) => votePost(id, 'downVote').then((post) => dispatch(votePostCount(post))),
+  voteUp: (id) => dispatch(votePostCount(id, 'upVote')),
+  voteDown: (id) => dispatch(votePostCount(id, 'downVote')),
 })
 
 export default compose(
   withRouter,
   withStyles(styles),
-  connect(mapDispatchToProps),
+  connect(null, mapDispatchToProps),
 )(PostCardActions)
