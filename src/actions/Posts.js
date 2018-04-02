@@ -2,7 +2,7 @@ import {
   // FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
   // ADD_POST,
-  // FETCH_POST_BY_ID,
+  FETCH_POST_BY_ID,
   VOTE_POST,
   // EDIT_POST,
   // DELETE_POST,
@@ -10,7 +10,8 @@ import {
 } from './Constants'
 import {
   fetchPosts,
-  votePost
+  fetchPostById,
+  votePost,
 } from '../api/Posts'
 
 export const getPosts = () => dispatch =>
@@ -19,10 +20,11 @@ export const getPosts = () => dispatch =>
     posts
   }))
 
-// export const fetchPostById = (actionType, posts) => ({
-//   type: FETCH_POSTS,
-//   posts
-// })
+export const getPostById = id => dispatch =>
+  fetchPostById(id).then(post => dispatch({
+    type: FETCH_POST_BY_ID,
+    post
+  }))
 
 // export const fetchPostsByCategory = (category) =>
 //   API.fetchPostsByCategory(category)
