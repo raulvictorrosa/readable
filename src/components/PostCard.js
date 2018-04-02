@@ -12,13 +12,13 @@ import PostCardActions from './PostCardActions'
 class PostCard extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    postInfo: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired
   }
 
+
   render() {
-    const { classes, postInfo } = this.props;
-    const { id, author, body, commentCount, timestamp, title, voteScore } = postInfo;
-    const dataActions = { id, commentCount, voteScore }
+    const { classes, post } = this.props;
+    const { id, author, body, commentCount, timestamp, title, voteScore } = post;
     return (
       <div>
         <Card className={classes.card}>
@@ -44,7 +44,11 @@ class PostCard extends Component {
             </Typography>
           </CardContent>
 
-          <PostCardActions postInfo={dataActions} />
+          <PostCardActions
+            id={id}
+            commentCount={commentCount}
+            voteScore={voteScore}
+          />
         </Card>
       </div>
     )
@@ -62,4 +66,20 @@ const styles = theme => ({
   }
 })
 
-export default withStyles(styles)(PostCard);
+// const mapStateToProps = post => ({
+//   post
+// })
+
+// const mapDispatchToProps = dispatch => ({
+//   fetchPostById: id => dispatch(getPostById(id))
+// })
+
+// export default compose(
+//   withStyles(styles),
+//   connect(
+//     // mapStateToProps,
+//     null,
+//     mapDispatchToProps
+//   )
+// )(PostCard)
+export default withStyles(styles)(PostCard)
