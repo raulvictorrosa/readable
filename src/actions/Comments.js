@@ -1,18 +1,22 @@
-// import {
-//   FETCH_COMMENTS,
-//   ADD_COMMENT,
-//   // FETCH_COMMENT,
-//   // VOTE_COMMENT,
-//   UPVOTE_COMMENT,
-//   DOWNVOTE_COMMENT,
-//   EDIT_COMMENT,
-//   DELETE_COMMENT,
-// } from '../actions'
+import {
+  FETCH_COMMENTS,
+  // ADD_COMMENT,
+  // FETCH_COMMENT,
+  // VOTE_COMMENT,
+  // UPVOTE_COMMENT,
+  // DOWNVOTE_COMMENT,
+  // EDIT_COMMENT,
+  // DELETE_COMMENT,
+} from '../actions'
+import {
+  fetchComments,
+} from '../api/Comments'
 
-// export const fetchComments = (postId) =>
-//   API.fetchComments(postId).then(comments => {
-//     dispatch({ type: FETCH_COMMENTS, postId, comments })
-//   })
+export const getComments = id => dispatch =>
+  fetchComments(id).then(comments => dispatch({
+    type: FETCH_COMMENTS,
+    comments
+  }))
 
 // export const addComment = (comment, postId, callback) => {
 //   return (dispatch) => {
@@ -21,8 +25,6 @@
 //     }).then(() => callback())
 //   }
 // }
-
-//TODO: Add action to FETCH_COMMENT
 
 // export const voteComment = (commentId, parentId, option) => {
 //   return (dispatch) => {
