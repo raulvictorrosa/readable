@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { Link } from 'react-router-dom'
 import classNames from 'classnames';
-import { Manager, Target, Popper } from 'react-popper';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
+import IconButton from 'material-ui/IconButton';
+import { MenuItem, MenuList } from 'material-ui/Menu';
+import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import Grow from 'material-ui/transitions/Grow';
-import Paper from 'material-ui/Paper';
-import { MenuItem, MenuList } from 'material-ui/Menu';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui-icons/MoreVert';
+import { PropTypes } from 'prop-types';
+import React, { Component } from 'react';
+import { Manager, Popper, Target } from 'react-popper';
+import { Link } from 'react-router-dom';
 
 class PostOptions extends Component {
   static propTypes = {

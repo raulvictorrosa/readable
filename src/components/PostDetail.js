@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import compose from 'recompose/compose';
-import { connect } from 'react-redux'
-import { getPostById } from '../actions/Posts'
-import Moment from 'moment'
+import Card, { CardContent, CardHeader } from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
-import PostOptions from './PostOptions'
-import PostCardActions from './PostCardActions'
+import Moment from 'moment';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
+import { getPostById } from '../actions/Posts';
+import PostCardActions from './PostCardActions';
+import PostOptions from './PostOptions';
 
 class PostDetail extends Component {
   componentWillMount() {

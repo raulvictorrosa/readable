@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import compose from 'recompose/compose';
-import { connect } from 'react-redux'
-import { getPosts } from '../actions/Posts'
 import Grid from 'material-ui/Grid';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import compose from 'recompose/compose';
+import { getPosts } from '../actions/Posts';
+import PostCard from './PostCard';
 
-import PostCard from './PostCard'
 
 class PostList extends Component {
   componentDidMount() {

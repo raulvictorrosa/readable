@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import Moment from 'moment'
-import { withStyles } from 'material-ui/styles';
-import Card, { CardHeader, CardContent } from 'material-ui/Card';
-import Typography from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
+import Card, { CardContent, CardHeader } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 import blueGrey from 'material-ui/colors/blueGrey';
-import PostOptions from './PostOptions'
-import PostCardActions from './PostCardActions'
+import { withStyles } from 'material-ui/styles';
+import Moment from 'moment';
+import { PropTypes } from 'prop-types';
+import React, { Component } from 'react';
+import PostCardActions from './PostCardActions';
+import PostOptions from './PostOptions';
 
 class PostCard extends Component {
   static propTypes = {

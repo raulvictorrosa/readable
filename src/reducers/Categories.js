@@ -1,4 +1,4 @@
-import { FETCH_CATEGORIES } from '../actions/Constants'
+import { FETCH_CATEGORIES } from '../actions/Constants';
 
 function categories(state = [], action) {
   switch (action.type) {

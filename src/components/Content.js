@@ -1,9 +1,9 @@
 import React from 'react';
 // import { PropTypes } from 'prop-types'
-import { Switch, Route } from 'react-router-dom';
-import PostList from './PostList';
-import PostForm from './PostForm';
+import { Route, Switch } from 'react-router-dom';
 import PostDetail from './PostDetail';
+import PostForm from './PostForm';
+import PostList from './PostList';
 // import { getSortedPostsWithSortedComments } from 'selectors';
 
 const Content = () =>

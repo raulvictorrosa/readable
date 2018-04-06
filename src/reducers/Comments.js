@@ -1,11 +1,4 @@
-import {
-  FETCH_COMMENTS,
-  ADD_COMMENT,
-  // FETCH_COMMENT,
-  // VOTE_COMMENT,
-  EDIT_COMMENT,
-  DELETE_COMMENT,
-} from '../actions/constants'
+import { ADD_COMMENT, DELETE_COMMENT, /* FETCH_COMMENT, */ /* VOTE_COMMENT, */ EDIT_COMMENT, FETCH_COMMENTS } from '../actions/constants';
 
 function comments(state = {}, action) {
   const { comments, commentId, parentId, updatedComment } = action

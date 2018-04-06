@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import { PropTypes } from 'prop-types';
-import { withStyles } from 'material-ui/styles';
+import AddCircleIcon from 'material-ui-icons/AddCircle';
+import Divider from 'material-ui/Divider';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
-import Divider from 'material-ui/Divider';
+import { withStyles } from 'material-ui/styles';
 import Collapse from 'material-ui/transitions/Collapse';
-import AddCircle from 'material-ui-icons/AddCircle';
-import Categories from './Categories';
+import { PropTypes } from 'prop-types';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
+import Categories from './Categories';
 
 const MenuList = (props) => {
   MenuList.propTypes = {
@@ -41,7 +41,7 @@ const MenuList = (props) => {
           <List disablePadding>
             <ListItem button className={classes.nested} component={Link} to='/posts/new'>
               <ListItemIcon>
-                <AddCircle />
+                <AddCircleIcon />
               </ListItemIcon>
               <ListItemText primary="Add new" />
             </ListItem>

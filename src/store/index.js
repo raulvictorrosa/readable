@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
-import { createLogger } from 'redux-logger'
-import Thunk from 'redux-thunk'
-import Reducers from '../reducers'
+import { applyMiddleware, compose, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
+import Thunk from 'redux-thunk';
+import Reducers from '../reducers';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

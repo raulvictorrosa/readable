@@ -8,9 +8,7 @@ import {
   // EDIT_COMMENT,
   // DELETE_COMMENT,
 } from '../actions'
-import {
-  fetchComments,
-} from '../api/Comments'
+import { fetchComments } from '../api/Comments';
 
 export const getComments = id => dispatch =>
   fetchComments(id).then(comments => dispatch({

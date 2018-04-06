@@ -1,11 +1,11 @@
-import React from 'react'
-import { PropTypes } from 'prop-types'
-import { withStyles } from 'material-ui/styles';
-// import Typography from 'material-ui/Typography';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import Toolbar from 'material-ui/Toolbar';
+// import Typography from 'material-ui/Typography';
+import { withStyles } from 'material-ui/styles';
+import { PropTypes } from 'prop-types';
+import React from 'react';
 
 const Header = (props) => {
   Header.propTypes = {
@@ -39,9 +39,9 @@ const Header = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          {/* <Typography color="inherit" variant="title" noWrap>
+          {{/* <Typography color="inherit" variant="title" noWrap>
             {currentPageName[0].heading}
-          </Typography> */}
+          </Typography> */}}
         </Toolbar>
       </AppBar>
     </div>

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux'
-import { getCategories } from '../actions/Categories';
-import { Link, withRouter } from 'react-router-dom'
-import compose from 'recompose/compose';
-import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Collapse from 'material-ui/transitions/Collapse';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
+import List, { ListItem, ListItemText } from 'material-ui/List';
+import { withStyles } from 'material-ui/styles';
+import Collapse from 'material-ui/transitions/Collapse';
+import { PropTypes } from 'prop-types';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
+import compose from 'recompose/compose';
+import { getCategories } from '../actions/Categories';
 import { capitalize } from '../utils/helper';
 
 class Categories extends Component {

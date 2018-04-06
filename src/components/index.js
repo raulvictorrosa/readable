@@ -1,11 +1,10 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
-
+import { withStyles } from 'material-ui/styles';
+import { PropTypes } from 'prop-types';
+import React from 'react';
+import Content from './Content';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import Content from './Content';
 
 const Index = (props) => {
   Index.propTypes = {

@@ -1,18 +1,13 @@
+import { fetchPostById, fetchPosts, votePost } from '../api/Posts';
 import {
   // FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
   // ADD_POST,
-  FETCH_POST_BY_ID,
-  VOTE_POST,
+  FETCH_POST_BY_ID, VOTE_POST,
   // EDIT_POST,
   // DELETE_POST,
   // SORT_POST,
 } from './Constants'
-import {
-  fetchPosts,
-  fetchPostById,
-  votePost,
-} from '../api/Posts'
 
 export const getPosts = () => dispatch =>
   fetchPosts().then(posts => dispatch({

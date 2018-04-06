@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { withStyles } from 'material-ui/styles';
-import Hidden from 'material-ui/Hidden';
-import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
+import Drawer from 'material-ui/Drawer';
+import Hidden from 'material-ui/Hidden';
+import { withStyles } from 'material-ui/styles';
+import { PropTypes } from 'prop-types';
+import React, { Component } from 'react';
 import MenuList from './MenuList';
 
 class Sidebar extends Component {
