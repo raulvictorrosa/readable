@@ -51,30 +51,30 @@ export const fetchComment = (id) =>
 * @param {string} option - Either "upVote" or "downVote"
 * @returns {Promise} Promise object represents the comment with the new vote
 */
-// export const voteComment = (id, option) =>
-//   fetch(`${BASE_URL}/comments/${id}`, {
-//     method: 'POST',
-//     headers: {
-//       ...headers,
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({ option })
-//   }).then(res => res.json())
+export const voteComment = (id, option) =>
+  fetch(`${BASE_URL}/comments/${id}`, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ option })
+  }).then(res => res.json())
 
-const voteComment = (option) => (commentId) => {
-  return fetch(`${BASE_URL}/comments/${commentId}`,
-    {
-      method: 'POST',
-      headers: {
-        ...headers,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ option })
-    })
-    .then(res => res.json());
-}
-export const upvoteComment = voteComment(OPTION_UPVOTE);
-export const downvoteComment = voteComment(OPTION_DOWNVOTE);
+// const voteComment = (option) => (commentId) => {
+//   return fetch(`${BASE_URL}/comments/${commentId}`,
+//     {
+//       method: 'POST',
+//       headers: {
+//         ...headers,
+//         'Content-Type': 'application/json'
+//       },
+//       body: JSON.stringify({ option })
+//     })
+//     .then(res => res.json());
+// }
+// export const upvoteComment = voteComment(OPTION_UPVOTE);
+// export const downvoteComment = voteComment(OPTION_DOWNVOTE);
 
 /**
 * @description Edit the details of an existing comment
