@@ -39,9 +39,9 @@ const Header = (props) => {
           >
             <MenuIcon />
           </IconButton>
-          {{/* <Typography color="inherit" variant="title" noWrap>
+          {/* {<Typography color="inherit" variant="title" noWrap>
             {currentPageName[0].heading}
-          </Typography> */}}
+          </Typography>} */}
         </Toolbar>
       </AppBar>
     </div>
