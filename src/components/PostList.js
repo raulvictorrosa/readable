@@ -15,14 +15,12 @@ class PostList extends Component {
     const { posts } = this.props
 
     return (
-      <Grid item xs={12}>
-        <Grid container spacing={24}>
-          {posts.map(post => (
-            <Grid key={post.id} item xs={4}>
-              <PostCard post={{ ...post }} />
-            </Grid>
-          ))}
-        </Grid>
+      <Grid container spacing={24}>
+        {posts.map(post => (
+          <Grid key={post.id} item xs={12}>
+            <PostCard post={{ ...post }} />
+          </Grid>
+        ))}
       </Grid>
     )
   }
