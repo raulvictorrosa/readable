@@ -68,9 +68,6 @@ class Categories extends Component {
 const styles = theme => ({
   nested: {
     paddingLeft: theme.spacing.unit * 4,
-  },
-  menuLinkItem: {
-    textDecoration: 'none'
   }
 })
 
