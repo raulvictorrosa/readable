@@ -8,6 +8,7 @@ import Divider from 'material-ui/Divider';
 import Collapse from 'material-ui/transitions/Collapse';
 import AddCircle from 'material-ui-icons/AddCircle';
 import Categories from './Categories';
+import logo from '../images/logo.svg';
 
 const MenuList = (props) => {
   MenuList.propTypes = {
@@ -19,8 +20,15 @@ const MenuList = (props) => {
   return (
     <div>
       <List>
-        <ListItem>
-          <Typography color="secondary" variant="title" noWrap>React Readble</Typography>
+        <ListItem className={classes.logo}>
+          <img src={ logo }
+            alt="React"
+            className="logo shadow"
+            height="42" width="42"
+          />
+          <Typography color="secondary" variant="title" noWrap>
+            React Readble
+          </Typography>
         </ListItem>
       </List>
       <Divider />
@@ -47,6 +55,10 @@ const MenuList = (props) => {
 }
 
 const styles = theme => ({
+  logo: {
+    paddingTop: '3px',
+    paddingBottom: '3px'
+  },
   nested: {
     paddingLeft: theme.spacing.unit * 4,
   },
