@@ -4,11 +4,13 @@ import { Route, Switch } from 'react-router-dom';
 import PostDetail from './PostDetail';
 import PostForm from './PostForm';
 import PostList from './PostList';
+import PostByCategoryList from './PostByCategoryList';
 // import { getSortedPostsWithSortedComments } from 'selectors';
 
 const Content = () =>
   <Switch>
     <Route exact path="/" component={PostList} />
+    <Route exact path="/:category" component={PostByCategoryList} />
     <Route exact path='/posts/new' component={PostForm} />
     <Route path='/posts/:id/edit' component={PostForm} />
     <Route exact path='/posts/:id' component={PostDetail} />
