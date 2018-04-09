@@ -1,32 +1,31 @@
-// Reducer is pure function
-// Return one and the same result if the same arguments are passed in
-// Depend solely on the arguments passed into them
-// Do not produce side effects
 // import sortBy from 'sort-by'
 import {
-  // FETCH_POSTS_BY_CATEGORY,
+  FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
-  // ADD_POST,
-  // EDIT_POST,
-  // DELETE_POST,
+  /* ADD_POST, */
+  FETCH_POST_BY_ID,
+  /* EDIT_POST,
+  DELETE_POST, */
   VOTE_POST,
-  // SORT_POST,
+  /* SORT_POST, */
 } from '../actions/Constants'
 
-const posts = (state = [], action) => {
+export const posts = (state = [], action) => {
   switch (action.type) {
-    // case FETCH_POSTS_BY_CATEGORY:
-    //   return posts.filter(post => !(post.deleted))
+    case FETCH_POSTS_BY_CATEGORY:
+      return [ ...action.posts ]
 
     case FETCH_POSTS:
-      return [
-        // ...state,
-        ...action.posts
-      ]
+      return [ ...action.posts ]
       // return [
       //   ...state,
       //   ...action.posts
       // ]
+
+    // case FETCH_POST_BY_ID:
+    //   return {
+    //     ...action.post
+    //   }
 
     // case ADD_POST:
     //   return state.concat([post])
@@ -50,4 +49,14 @@ const posts = (state = [], action) => {
   }
 }
 
-export default posts
+export const post = (state = {}, action) => {
+  switch (action.type) {
+    case FETCH_POST_BY_ID:
+      return {
+        ...action.post
+      }
+
+    default:
+      return state
+  }
+}
