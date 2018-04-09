@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import compose from 'recompose/compose';
 import { votePostCount } from '../actions/Posts';
-// import CommentList from './CommentList';
+import CommentList from './CommentList';
 
 class PostCardActions extends Component {
   static propTypes = {
@@ -39,7 +39,7 @@ class PostCardActions extends Component {
     voteDown(id)
   }
 
-  handleInsertComment = () => {
+  handleShowComment = () => {
     if (this.props.match.path === '/posts/:id') {
       this.setState({ expanded: !this.state.expanded })
 
@@ -51,7 +51,7 @@ class PostCardActions extends Component {
 
   render() {
     const { classes, post, match } = this.props
-    const { id, author, commentCount, timestamp, title, voteScore } = post
+    const { id, commentCount, voteScore } = post
     const { expanded } = this.state
     return (
       <div>
@@ -77,7 +77,7 @@ class PostCardActions extends Component {
           <IconButton
             aria-label="Insert Comment"
             aria-expanded={this.state.expanded}
-            onClick={this.handleInsertComment}
+            onClick={this.handleShowComment}
           >
             {expanded
               ? <ModeCommentIcon />
@@ -102,7 +102,7 @@ class PostCardActions extends Component {
         </CardActions>
 
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          {/* <Comments id={id}/> */}
+          <CommentList id={id} />
         </Collapse>
       </div>
     )
