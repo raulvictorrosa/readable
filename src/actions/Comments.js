@@ -7,7 +7,7 @@ import {
   // DOWNVOTE_COMMENT,
   // EDIT_COMMENT,
   // DELETE_COMMENT,
-} from '../actions'
+} from './Constants'
 import { fetchComments } from '../api/Comments';
 
 export const getComments = id => dispatch =>
