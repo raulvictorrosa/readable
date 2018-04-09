@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { BASE_URL, headers, OPTION_UPVOTE, OPTION_DOWNVOTE } from './Constants';
+import { BASE_URL, headers } from './Constants';
 
 /**
 * @description Get all the comments for a single post
