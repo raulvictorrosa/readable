@@ -1,6 +1,6 @@
-import { fetchPostById, fetchPosts, votePost } from '../api/Posts';
+import { fetchPostsByCategory, fetchPostById, fetchPosts, votePost } from '../api/Posts';
 import {
-  // FETCH_POSTS_BY_CATEGORY,
+  FETCH_POSTS_BY_CATEGORY,
   FETCH_POSTS,
   // ADD_POST,
   FETCH_POST_BY_ID, VOTE_POST,
@@ -21,9 +21,11 @@ export const getPostById = id => dispatch =>
     post
   }))
 
-// export const fetchPostsByCategory = (category) =>
-//   API.fetchPostsByCategory(category)
-//     .then(posts => dispatch({ type: FETCH_POSTS_BY_CATEGORY, posts }))
+export const getPostsByCategory = category => dispatch =>
+  fetchPostsByCategory(category).then(posts => dispatch({
+    type: FETCH_POSTS_BY_CATEGORY,
+    posts
+  }))
 
 // export const addPost = (post) =>
 //   API.addPost(post)
