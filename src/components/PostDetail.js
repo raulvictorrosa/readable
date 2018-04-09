@@ -18,7 +18,7 @@ class PostDetail extends Component {
   render() {
     const { match, post } = this.props
     const { id } = match.params
-    const { body, commentCount, timestamp, title, voteScore } = post
+    const { body, timestamp, title } = post
     return (
       <Grid container spacing={24}>
         <Grid key={post.id} item xs={12}>
