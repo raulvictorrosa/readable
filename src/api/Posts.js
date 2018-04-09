@@ -1,4 +1,4 @@
-import { BASE_URL, headers /* , OPTION_UPVOTE, OPTION_DOWNVOTE */ } from './Constants';
+import { BASE_URL, headers } from './Constants';
 
 /**
 * @description Get all of the posts for a particular category
